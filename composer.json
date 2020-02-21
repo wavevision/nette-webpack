@@ -1,0 +1,55 @@
+{
+  "name": "wavevision/nette-webpack",
+  "description": "Webpack adapter for Nette framework.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Wavevision s.r.o",
+      "email": "info@wavevision.com"
+    },
+    {
+      "name": "Vít Rozsíval",
+      "email": "vit@wavevision.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Wavevision\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Wavevision\\": "tests"
+    }
+  },
+  "config": {
+    "platform": {
+      "php": "7.4"
+    },
+    "sort-packages": true
+  },
+  "require": {
+    "php": ">=7.4",
+    "nette/di": "^3.0",
+    "nette/http": "^3.0",
+    "wavevision/props-control": "^4.2",
+    "wavevision/utils": "^2.4"
+  },
+  "require-dev": {
+    "jakub-onderka/php-parallel-lint": "^1.0",
+    "phing/phing": "3.0a3",
+    "phpstan/extension-installer": "^1.0",
+    "phpstan/phpstan": "^0.12.11",
+    "phpstan/phpstan-nette": "^0.12.3",
+    "wavevision/coding-standard": "^3.1",
+    "wavevision/di-service-annotation": "^3.1",
+    "wavevision/nette-tests": "^3.0"
+  },
+  "scripts": {
+    "phing": "phing"
+  },
+  "extra": {
+    "phpstan": {}
+  }
+}

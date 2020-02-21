@@ -1,0 +1,9 @@
+<?php declare (strict_types = 1);
+
+use Wavevision\DIServiceAnnotation\Configuration;
+use Wavevision\DIServiceAnnotation\Runner;
+use Wavevision\Utils\Path;
+
+require __DIR__ . '/../vendor/autoload.php';
+$rootDir = Path::create(__DIR__, '..');
+Runner::run(new Configuration($rootDir->string('src'), $rootDir->string('config', 'services.neon')));
