@@ -109,7 +109,7 @@ class WebpackParameters
 	 */
 	public function getEntries(): array
 	{
-		return $this->getEnabledWebpackRecords($this->entries);
+		return $this->getEnabledRecords($this->entries);
 	}
 
 	/**
@@ -149,7 +149,7 @@ class WebpackParameters
 	 * @param array<string, bool> $records
 	 * @return string[]
 	 */
-	private function getEnabledWebpackRecords(array $records): array
+	private function getEnabledRecords(array $records): array
 	{
 		return array_keys(array_filter($records, fn(bool $enabled): bool => $enabled));
 	}

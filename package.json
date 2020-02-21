@@ -1,0 +1,41 @@
+{
+  "name": "@wavevision/nette-webpack",
+  "version": "0.0.1",
+  "description": "Webpack adapter for Nette framework.",
+  "keywords": [
+    "nette",
+    "webpack",
+    "adpater",
+    "extension"
+  ],
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wavevision/nette-webpack.git"
+  },
+  "author": "Wavevision s.r.o <info@wavevision.com>",
+  "contributors": [
+    {
+      "name": "Vít Rozsíval",
+      "email": "vit@wavevision.com"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wavevision/nette-webpack/issues"
+  },
+  "homepage": "https://github.com/wavevision/nette-webpack",
+  "devDependencies": {
+    "@types/node": "^12.12.28",
+    "@typescript-eslint/eslint-plugin": "^2.20.0",
+    "@typescript-eslint/parser": "^2.20.0",
+    "@wavevision/coding-standard": "^3.1.2",
+    "eslint": "^6.8.0",
+    "typescript": "^3.8.2"
+  },
+  "dependencies": {
+    "@types/webpack-manifest-plugin": "^2.1.0",
+    "neon-js": "^1.1.2",
+    "webpack-manifest-plugin": "^2.2.0"
+  }
+}

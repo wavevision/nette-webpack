@@ -1,0 +1,4 @@
+{
+  "extends": "@wavevision/coding-standard/ts/tsconfig.json",
+  "include": ["./src/assets/**/*"]
+}

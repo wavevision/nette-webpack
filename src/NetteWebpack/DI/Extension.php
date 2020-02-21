@@ -44,11 +44,11 @@ class Extension extends CompilerExtension
 		$builder = $this->getContainerBuilder();
 		$config = (array)$this->getConfig();
 		$devServer = new DevServer($config[WebpackParameters::DEV_SERVER]);
-		$productionMode = $this->getParameter('productionMode');
+		$serviceSetup = new ServiceSetup($devServer, $config);
 		$webpackParameters = $builder->addDefinition($this->prefix('webpackParameters'));
-		$webpackParametersSetup = $this->getWebpackParametersSetup($devServer, $config, $productionMode);
-		$loadManifestSetup = $this->getLoadManifestSetup($devServer, $config);
-		if ($productionMode) {
+		$webpackParametersSetup = $serviceSetup->get($config[WebpackParameters::ENTRIES], $this->isProduction());
+		$loadManifestSetup = $serviceSetup->get($config[WebpackParameters::MANIFEST]);
+		if ($this->isProduction()) {
 			$loadManifest = new LoadManifest(...$loadManifestSetup);
 			$webpackParametersSetup[] = $loadManifest->process();
 			$webpackParameters
@@ -77,20 +77,6 @@ class Extension extends CompilerExtension
 	}
 
 	/**
-	 * @param mixed[] $config
-	 * @return mixed[]
-	 */
-	private function getLoadManifestSetup(DevServer $devServer, array $config): array
-	{
-		return [
-			$devServer,
-			$config[WebpackParameters::DIR],
-			$config[WebpackParameters::DIST],
-			$config[WebpackParameters::MANIFEST],
-		];
-	}
-
-	/**
 	 * @return mixed
 	 */
 	private function getParameter(string $parameter)
@@ -103,22 +89,14 @@ class Extension extends CompilerExtension
 	 */
 	private function getServices(): array
 	{
-		return $this->loadFromFile(Path::join(__DIR__, '..', '..', '..', 'config', 'services.neon'))['services'];
+		$services = 'services';
+		$path = Path::create(__DIR__, '..', '..', '..', 'config', "$services.neon");
+		return $this->loadFromFile((string)$path)[$services];
 	}
 
-	/**
-	 * @param mixed[] $config
-	 * @return mixed[]
-	 */
-	private function getWebpackParametersSetup(DevServer $devServer, array $config, bool $productionMode): array
+	private function isProduction(): bool
 	{
-		return [
-			$devServer,
-			$config[WebpackParameters::DIR],
-			$config[WebpackParameters::DIST],
-			$config[WebpackParameters::ENTRIES],
-			$productionMode,
-		];
+		return $this->getParameter('productionMode');
 	}
 
 }
