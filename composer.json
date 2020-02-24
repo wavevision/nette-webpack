@@ -39,6 +39,7 @@
   "require-dev": {
     "jakub-onderka/php-parallel-lint": "^1.0",
     "phing/phing": "3.0a3",
+    "php-coveralls/php-coveralls": "^2.2",
     "phpstan/extension-installer": "^1.0",
     "phpstan/phpstan": "^0.12.11",
     "phpstan/phpstan-nette": "^0.12.3",

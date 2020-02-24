@@ -1,0 +1,12 @@
+extensions:
+	webpack: Wavevision\NetteWebpack\DI\Extension(%debugMode%, false)
+
+webpack:
+	devServer:
+		enabled: false
+		url: http://localhost:9006
+	dir: %wwwDir%/dist
+	dist: dist
+	entries:
+		tests: true
+	manifest: manifest.json

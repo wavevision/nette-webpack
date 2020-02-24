@@ -11,6 +11,7 @@ use Wavevision\NetteWebpack\DevServer;
 use Wavevision\NetteWebpack\LoadManifest;
 use Wavevision\NetteWebpack\WebpackParameters;
 use Wavevision\Utils\Path;
+use Wavevision\Utils\Server;
 
 class Extension extends CompilerExtension
 {
@@ -19,13 +20,23 @@ class Extension extends CompilerExtension
 
 	private const DEFAULT_MANIFEST = 'manifest.json';
 
+	private bool $consoleMode;
+
+	private bool $debugMode;
+
+	public function __construct(bool $debugMode, ?bool $consoleMode = null)
+	{
+		$this->consoleMode = $consoleMode !== null ? $consoleMode : Server::isCLI();
+		$this->debugMode = $debugMode;
+	}
+
 	public function getConfigSchema(): Schema
 	{
 		return Expect::structure(
 			[
 				WebpackParameters::DEV_SERVER => Expect::structure(
 					[
-						DevServer::ENABLED => Expect::bool($this->getParameter('debugMode')),
+						DevServer::ENABLED => Expect::bool($this->debugMode),
 						DevServer::URL => Expect::string(self::DEFAULT_URL),
 					]
 				),
@@ -47,10 +58,10 @@ class Extension extends CompilerExtension
 		$serviceSetup = new ServiceSetup($devServer, $config);
 		$webpackParameters = $builder->addDefinition($this->prefix('webpackParameters'));
 		$webpackParametersSetup = $serviceSetup->get($config[WebpackParameters::ENTRIES], $this->isProduction());
-		$loadManifestSetup = $serviceSetup->get($config[WebpackParameters::MANIFEST]);
+		$loadManifestSetup = $serviceSetup->get($config[WebpackParameters::MANIFEST], $this->consoleMode);
 		if ($this->isProduction()) {
 			$loadManifest = new LoadManifest(...$loadManifestSetup);
-			$webpackParametersSetup[] = $loadManifest->process();
+			$webpackParametersSetup[] = $this->consoleMode ? null : $loadManifest->process();
 			$webpackParameters
 				->setFactory(WebpackParameters::class, $webpackParametersSetup)
 				->addSetup('injectLoadManifest', [$loadManifest]);
@@ -81,7 +92,7 @@ class Extension extends CompilerExtension
 	 */
 	private function getParameter(string $parameter)
 	{
-		return $this->getContainerBuilder()->parameters[$parameter] ?? null;
+		return $this->getContainerBuilder()->parameters[$parameter];
 	}
 
 	/**

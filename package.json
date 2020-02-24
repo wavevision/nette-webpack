@@ -9,6 +9,7 @@
     "extension"
   ],
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wavevision/nette-webpack.git"
@@ -30,6 +31,7 @@
     "@typescript-eslint/eslint-plugin": "^2.20.0",
     "@typescript-eslint/parser": "^2.20.0",
     "@wavevision/coding-standard": "^3.1.2",
+    "coveralls": "^3.0.9",
     "eslint": "^6.8.0",
     "typescript": "^3.8.2"
   },
@@ -37,5 +39,27 @@
     "@types/webpack-manifest-plugin": "^2.1.0",
     "neon-js": "^1.1.2",
     "webpack-manifest-plugin": "^2.2.0"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production run-s clean ts:build",
+    "ci": "run-s ts eslint prettier test:coverage:report",
+    "clean": "rm -rf dist/*",
+    "eslint": "eslint src/assets --cache --ext .ts",
+    "eslint:fix": "yarn eslint --fix",
+    "fix": "run-s ts eslint:fix prettier:fix test",
+    "postversion": "run-s build postversion:push:tags postversion:publish postversion:push postversion:echo",
+    "postversion:echo": "echo \"Successfully released version $npm_package_version!\"",
+    "postversion:publish": "yarn publish --access public --new-version $npm_package_version",
+    "postversion:push": "git push",
+    "postversion:push:tags": "yarn postversion:push --tags",
+    "prepare": "npm run build",
+    "prettier": "prettier '**/*.ts' --check",
+    "prettier:fix": "yarn prettier --write",
+    "preversion": "yarn fix",
+    "test": "jest",
+    "test:coverage": "jest --coverage || true",
+    "test:coverage:report": "jest --coverage && cat temp/coverage/lcov.info | coveralls",
+    "ts": "tsc",
+    "ts:build": "yarn ts --project tsconfig.build.json"
   }
 }

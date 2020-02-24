@@ -6,8 +6,10 @@ use Nette\SmartObject;
 use Nette\Utils\Json;
 use Wavevision\NetteWebpack\Exceptions\InvalidState;
 use Wavevision\Utils\Path;
-use Wavevision\Utils\Server;
 
+/**
+ * @internal
+ */
 class LoadManifest
 {
 
@@ -23,9 +25,9 @@ class LoadManifest
 
 	public function __construct(DevServer $devServer, string $dir, string $dist, string $manifest)
 	{
+		$this->devServer = $devServer;
 		$this->dir = $dir;
 		$this->dist = $dist;
-		$this->devServer = $devServer;
 		$this->manifest = $manifest;
 	}
 
@@ -37,9 +39,6 @@ class LoadManifest
 		$context = stream_context_create(['ssl' => ['verify_peer' => false]]);
 		$manifest = @file_get_contents($this->getManifestPath(), false, $context);
 		if ($manifest === false) {
-			if (Server::isCLI()) {
-				return [];
-			}
 			throw new InvalidState('Unable to load webpack manifest file.');
 		}
 		return Json::decode($manifest, Json::FORCE_ARRAY);

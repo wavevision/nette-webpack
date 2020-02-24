@@ -47,7 +47,7 @@ export const generateManifest: ManifestOptions['generate'] = (
 export const getManifestOptions = (options: Options): ManifestOptions => {
   const manifestOptions = options.manifestOptions || {};
   const generator = manifestOptions.generate;
-  let currentGenerator: ManifestOptions['generate'] = generateManifest;
+  let currentGenerator = generateManifest;
   if (typeof generator === 'function') {
     currentGenerator = (seed, files, entries) =>
       generator(generateManifest(seed, files, entries), files, entries);

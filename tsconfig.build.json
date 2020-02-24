@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": ["./src/assets/**/tests/**/*"],
+  "compilerOptions": {
+    "allowJs": false,
+    "declaration": true,
+    "module": "CommonJS",
+    "noEmit": false,
+    "outDir": "./dist",
+    "resolveJsonModule": false,
+    "target": "ES5"
+  }
+}

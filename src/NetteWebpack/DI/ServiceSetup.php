@@ -7,6 +7,9 @@ use Wavevision\NetteWebpack\DevServer;
 use Wavevision\NetteWebpack\WebpackParameters;
 use Wavevision\Utils\Arrays;
 
+/**
+ * @internal
+ */
 final class ServiceSetup
 {
 

@@ -2,6 +2,9 @@
 
 namespace Wavevision\NetteWebpack;
 
+/**
+ * @internal
+ */
 trait InjectLoadManifest
 {
 

@@ -2,6 +2,9 @@
 
 namespace Wavevision\NetteWebpack\UI;
 
+/**
+ * @internal
+ */
 abstract class BaseControl extends \Wavevision\PropsControl\BaseControl
 {
 

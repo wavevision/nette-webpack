@@ -3,8 +3,9 @@
 !/.idea/codeStyles/
 !/.idea/codeStyles/codeStyleConfig.xml
 !/.idea/codeStyles/Project.xml
+.eslintcache
+.phpunit.result.cache
+/dist
 /node_modules
 /temp
 /vendor
-.eslintcache
-.phpunit.result.cache
