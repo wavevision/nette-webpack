@@ -16,5 +16,5 @@ webpack:
 	dist: dist
 	entries:
 		entry: true
-		something: false
+		example: false
 	manifest: manifest.json

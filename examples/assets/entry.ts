@@ -1,3 +1,4 @@
-import something from './something';
+import example from './example';
+import './styles.css';
 
-something();
+example();

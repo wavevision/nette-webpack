@@ -5,7 +5,6 @@ namespace Wavevision\NetteWebpack\DI;
 use Nette\SmartObject;
 use Wavevision\NetteWebpack\DevServer;
 use Wavevision\NetteWebpack\WebpackParameters;
-use Wavevision\Utils\Arrays;
 
 /**
  * @internal
@@ -37,7 +36,7 @@ final class ServiceSetup
 	 */
 	public function get(...$parameters): array
 	{
-		return Arrays::mergeAllRecursive(
+		return array_merge(
 			[
 				$this->devServer,
 				$this->config[WebpackParameters::DIR],

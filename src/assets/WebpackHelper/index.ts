@@ -17,7 +17,7 @@ import { Entries, NeonConfig, Options } from './types';
 class WebpackHelper {
   public constructor(options: Options) {
     this.options = options;
-    this.neonConfig = this.parseNeonConfig() || {};
+    this.neonConfig = this.options.neonPath ? this.parseNeonConfig() : {};
   }
 
   private readonly neonConfig: NeonConfig;
@@ -25,7 +25,12 @@ class WebpackHelper {
   private readonly options: Options;
 
   public readonly createManifestPlugin = (): WebpackManifestPlugin =>
-    new WebpackManifestPlugin(getManifestOptions(this.options));
+    new WebpackManifestPlugin(
+      getManifestOptions({
+        ...(this.options.manifestOptions || {}),
+        fileName: this.getManifest(),
+      }),
+    );
 
   public readonly getDevServerUrl = (): UrlWithParsedQuery => {
     if (

@@ -4,6 +4,8 @@ services:
 	  inject: true
 	- factory: Wavevision\NetteWebpack\ResolveEntryChunks
 	  inject: true
+	- implement: Wavevision\NetteWebpack\UI\Components\Assets\ControlFactory
+	  inject: true
 	- implement: Wavevision\NetteWebpack\UI\Components\Assets\Scripts\ControlFactory
 	  inject: true
 	- implement: Wavevision\NetteWebpack\UI\Components\Assets\Styles\ControlFactory

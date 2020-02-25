@@ -39,7 +39,7 @@ class Extension extends CompilerExtension
 						DevServer::ENABLED => Expect::bool($this->debugMode),
 						DevServer::URL => Expect::string(self::DEFAULT_URL),
 					]
-				),
+				)->castTo('array'),
 				WebpackParameters::DIR => Expect::string(
 					Path::join($this->getParameter('wwwDir'), WebpackParameters::DIST)
 				),
@@ -47,7 +47,7 @@ class Extension extends CompilerExtension
 				WebpackParameters::ENTRIES => Expect::arrayOf(Expect::bool())->default([]),
 				WebpackParameters::MANIFEST => Expect::string(self::DEFAULT_MANIFEST),
 			]
-		);
+		)->castTo('array');
 	}
 
 	public function loadConfiguration(): void

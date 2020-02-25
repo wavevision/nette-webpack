@@ -1,7 +1,7 @@
 module.exports = {
   cacheDirectory: '<rootDir>/temp/cache/jest',
   testEnvironment: 'node',
-  testMatch: ['<rootDir>/**/tests/**/*.test.ts?(x)'],
+  testMatch: ['<rootDir>/**/tests/**/*.test.ts'],
   testPathIgnorePatterns: [
     '<rootDir>/dist/',
     '<rootDir>/node_modules/',

@@ -1,5 +1,6 @@
 import { resolve } from 'path';
 
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import { Configuration, Entry } from 'webpack';
 
@@ -23,13 +24,20 @@ const config: Configuration = {
   devtool: 'source-map',
   mode: 'production',
   module: {
-    rules: [{ test: /\.ts$/, exclude: /node_modules/, loader: 'ts-loader' }],
+    rules: [
+      { test: /\.css$/, use: [MiniCssExtractPlugin.loader, 'css-loader'] },
+      { test: /\.ts$/, exclude: /node_modules/, loader: 'ts-loader' },
+    ],
   },
   output: {
     filename: '[name].js',
     path: helper.getOutputPath(),
   },
-  plugins: [new CleanWebpackPlugin(), helper.createManifestPlugin()],
+  plugins: [
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({ filename: '[name].css' }),
+    helper.createManifestPlugin(),
+  ],
   resolve: {
     extensions: ['.js', '.ts'],
   },

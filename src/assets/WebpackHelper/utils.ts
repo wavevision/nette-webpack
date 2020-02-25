@@ -1,4 +1,4 @@
-import { ManifestEntries, ManifestOptions, Options } from './types';
+import { ManifestEntries, ManifestOptions } from './types';
 
 export const formatManifestChunks = (
   entries: ManifestEntries,
@@ -36,13 +36,14 @@ export const generateManifest: ManifestOptions['generate'] = (
   });
 };
 
-export const getManifestOptions = (options: Options): ManifestOptions => {
-  const manifestOptions = options.manifestOptions || {};
-  const generator = manifestOptions.generate;
+export const getManifestOptions = (
+  options: ManifestOptions,
+): ManifestOptions => {
+  const generator = options.generate;
   let currentGenerator = generateManifest;
   if (typeof generator === 'function') {
     currentGenerator = (seed, files, entries) =>
       generator(generateManifest(seed, files, entries), files, entries);
   }
-  return { ...manifestOptions, generate: currentGenerator };
+  return { ...options, generate: currentGenerator };
 };

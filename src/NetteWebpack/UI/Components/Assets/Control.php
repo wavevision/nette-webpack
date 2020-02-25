@@ -2,12 +2,16 @@
 
 namespace Wavevision\NetteWebpack\UI\Components\Assets;
 
+use Wavevision\DIServiceAnnotation\DIService;
 use Wavevision\NetteWebpack\EntryChunks;
 use Wavevision\NetteWebpack\Exceptions\InvalidState;
 use Wavevision\NetteWebpack\UI\BaseControl;
 use Wavevision\NetteWebpack\UI\Components\Assets\Scripts\ScriptsComponent;
 use Wavevision\NetteWebpack\UI\Components\Assets\Styles\StylesComponent;
 
+/**
+ * @DIService(generateComponent=true)
+ */
 final class Control extends BaseControl
 {
 
