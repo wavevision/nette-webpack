@@ -14,6 +14,13 @@ const NEON_PATH = resolve(ROOT_DIR, 'examples', 'config', 'common.neon');
 describe('WebpackHelper unit test', () => {
   describe('neonPath is defined', () => {
     const helper = new WebpackHelper({ wwwDir: WWW_DIR, neonPath: NEON_PATH });
+    describe('getDevServerPublicPath', () => {
+      it('returns resolved url with dist in path', () => {
+        expect(helper.getDevServerPublicPath()).toEqual(
+          'http://localhost:9006/dist/',
+        );
+      });
+    });
     describe('getDevServerUrl', () => {
       it('returns parsed url', () => {
         expect(helper.getDevServerUrl().href).toEqual('http://localhost:9006/');

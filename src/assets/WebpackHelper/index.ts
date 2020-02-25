@@ -32,6 +32,9 @@ class WebpackHelper {
       }),
     );
 
+  public readonly getDevServerPublicPath = (): string =>
+    `${this.getDevServerUrl().href}${this.getDist()}/`;
+
   public readonly getDevServerUrl = (): UrlWithParsedQuery => {
     if (
       this.neonConfig.webpack &&
