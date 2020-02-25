@@ -8,9 +8,9 @@ export const formatManifestChunks = (
   for (const asset in manifest) {
     const name = manifest[asset as keyof object] as string;
     for (const entry in entries) {
+      if (!chunks[entry]) chunks[entry] = [];
       for (const entryAsset of entries[entry]) {
         if (name === entryAsset && !name.includes('.map')) {
-          if (!chunks[entry]) chunks[entry] = [];
           chunks[entry].push(name);
         }
       }
