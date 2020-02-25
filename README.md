@@ -5,4 +5,29 @@
 [![PHPStan](https://img.shields.io/badge/style-level%20max-brightgreen.svg?label=phpstan)](https://github.com/phpstan/phpstan)
 [![Coverage Status](https://coveralls.io/repos/github/wavevision/nette-webpack/badge.svg?branch=master)](https://coveralls.io/github/wavevision/nette-webpack?branch=master)
 
-🚧 **Work In Progress** 🚧
+Webpack adapter for Nette framework consisting of:
+
+- DI extension
+- entry point chunks resolver
+- UI components to render assets `<script>` and `<link>` tags
+- webpack config helper to manage your setup consistently with `.neon` files
+
+## Installation
+
+Install the DI extension via [Composer](https://getcomposer.org)
+
+```bash
+composer require wavevision/nette-webpack
+```
+
+The webpack helper can be installed via [Yarn](https://yarnpkg.com)
+
+```bash
+yarn add --dev @wavevision/nette-webpack
+```
+
+or [npm](https://npmjs.com)
+
+```bash
+npm install --save-dev @wavevision/nette-webpack
+```
