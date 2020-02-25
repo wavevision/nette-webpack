@@ -9,7 +9,7 @@ module.exports = {
   ],
   moduleFileExtensions: ['js', 'ts'],
   coverageDirectory: '<rootDir>/temp/coverage/ts',
-  coverageReporters: ['html', 'text'],
+  coverageReporters: ['html', 'lcov', 'text'],
   collectCoverageFrom: [
     'src/assets/**/*.ts',
     '!**/*.d.ts',

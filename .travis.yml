@@ -4,23 +4,21 @@ dist: xenial
 git:
   depth: 1
 
+php: 7.4
+
 jobs:
   include:
-    - stage: TypeScript
-      language: node_js
-      cache:
+    - cache:
         yarn: true
         directories:
           - node_modules
-      script: yarn ci
-    - stage: PHP
-      language: php
-      php: 7.4
-      install: composer install
-      cache:
-        directories:
           - $HOME/.composer/cache
-      script: composer phing ci
+    - install:
+        - yarn installX
+        - composer install
+    - script:
+        - yarn ci
+        - composer ci
 
 notifications:
   webhooks:
