@@ -21,9 +21,8 @@ jobs:
   include:
     - script:
         - yarn ci
-        - composer ci
+        - composer phing ci
 
 notifications:
   webhooks:
     - https://coveralls.io/webhook
-
