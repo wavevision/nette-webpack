@@ -4,6 +4,7 @@
 [![Build Status](https://travis-ci.org/wavevision/nette-webpack.svg?branch=master)](https://travis-ci.org/wavevision/nette-webpack)
 [![PHPStan](https://img.shields.io/badge/style-level%20max-brightgreen.svg?label=phpstan)](https://github.com/phpstan/phpstan)
 [![Coverage Status](https://coveralls.io/repos/github/wavevision/nette-webpack/badge.svg?branch=master)](https://coveralls.io/github/wavevision/nette-webpack?branch=master)
+[![Release](https://img.shields.io/github/v/tag/wavevision/nette-webpack?label=version&sort=semver)](https://github.com/wavevision/nette-wepack/releases)
 
 Webpack adapter for Nette framework consisting of:
 
@@ -14,7 +15,7 @@ Webpack adapter for Nette framework consisting of:
 
 ## Installation
 
-Install the DI extension via [Composer](https://getcomposer.org)
+Install the DI extension via [Composer](https://getcomposer.org).
 
 ```bash
 composer require wavevision/nette-webpack
@@ -36,14 +37,14 @@ npm install --save-dev @wavevision/nette-webpack
 
 ### DI extension
 
-Register DI extension in your app config
+Register DI extension in your app config.
 
 ```neon
 extensions:
     webpack: Wavevision\NetteWebpack\DI\Extension(%debugMode%, %consoleMode%)
 ```
 
-You can configure the extension as follows (default values)
+You can configure the extension as follows _(default values)_.
 
 ```neon
 webpack:
@@ -58,7 +59,7 @@ webpack:
 
 **The `entries` param specifies your webpack entry points. See [example config](./examples/config/common.neon) for further usage.**
 
-Then, setup entry chunks
+Then, setup entry chunks.
 
 ```php
 use Nette\Application\UI\Presenter;
@@ -83,7 +84,7 @@ final class AppPresenter extends Presenter
 > **Note:** Entry chunks are resolved based on webpack `manifest.json`. You can also
 > set chunks manually and/or separately with `setScripts` and `setStyles` methods.
 
-Finally, render `assets` in your layout
+Finally, render `assets` in your layout.
 
 ```latte
 <!DOCTYPE html>
