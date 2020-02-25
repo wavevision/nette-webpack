@@ -1,6 +1,6 @@
 {
   "name": "@wavevision/nette-webpack",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Webpack adapter for Nette framework.",
   "keywords": [
     "nette",
