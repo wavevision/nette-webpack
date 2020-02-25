@@ -68,7 +68,7 @@ class WebpackHelper {
     return DEFAULT_MANIFEST;
   };
 
-  public readonly getOutputDir = (): string => {
+  public readonly getOutputPath = (): string => {
     if (this.neonConfig.webpack && this.neonConfig.webpack.dir) {
       return Neon.replaceWwwDir(
         this.neonConfig.webpack.dir,
@@ -78,8 +78,12 @@ class WebpackHelper {
     return resolve(this.options.wwwDir, this.getDist());
   };
 
-  public readonly parseNeonConfig = <T extends NeonConfig>(): T | null => {
-    if (!this.options.neonPath) return null;
+  public readonly parseNeonConfig = <T extends NeonConfig>(): T => {
+    if (!this.options.neonPath) {
+      throw new Error(
+        "Unable to parse neon config without 'neonPath' option defined.",
+      );
+    }
     return Neon.decode<T>(this.options.neonPath);
   };
 }

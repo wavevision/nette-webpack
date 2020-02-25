@@ -1,5 +1,5 @@
 /dist
+/examples/www/dist
 /node_modules
 /temp
-/tests
 /vendor

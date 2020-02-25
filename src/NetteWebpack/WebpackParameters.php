@@ -86,7 +86,11 @@ class WebpackParameters
 	 */
 	public function getChunks(): array
 	{
-		return $this->getManifest()[self::CHUNKS];
+		$chunks = $this->getManifest()[self::CHUNKS] ?? null;
+		if (!$chunks) {
+			throw new InvalidState(sprintf("Invalid webpack manifest format, property '%s' is missing.", self::CHUNKS));
+		}
+		return $chunks;
 	}
 
 	public function getDevServer(): DevServer
@@ -105,11 +109,19 @@ class WebpackParameters
 	}
 
 	/**
-	 * @return string[]
+	 * @return array<string, bool>
 	 */
 	public function getEntries(): array
 	{
-		return $this->getEnabledRecords($this->entries);
+		return $this->entries;
+	}
+
+	/**
+	 * @return string[]
+	 */
+	public function getEnabledEntries(): array
+	{
+		return $this->getEnabledRecords($this->getEntries());
 	}
 
 	/**

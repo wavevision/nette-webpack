@@ -2,17 +2,13 @@
 
 use Nette\Configurator;
 use Wavevision\NetteTests\Configuration;
-use Wavevision\Utils\Path;
+use Wavevision\NetteWebpackExamples\Bootstrap;
 
 require __DIR__ . '/../vendor/autoload.php';
 Configuration::setup(
 	function (): Configurator {
-		$configurator = new Configurator();
-		$rootDir = Path::create(__DIR__ . '..');
-		$configurator->addConfig($rootDir->string('tests', 'config', 'common.neon'));
-		$tempDir = $rootDir->path('temp');
-		$configurator->setTempDirectory((string)$tempDir);
-		$configurator->addParameters(['wwwDir' => $tempDir->string('www')]);
+		$configurator = Bootstrap::createConfigurator();
+		$configurator->addParameters(['wwwDir' => Bootstrap::rootDir()->string('examples', 'www')]);
 		return $configurator;
 	}
 );

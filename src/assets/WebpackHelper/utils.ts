@@ -1,26 +1,18 @@
 import { ManifestEntries, ManifestOptions, Options } from './types';
 
-export const invertManifest = (manifest: object): object => {
-  const output: Record<string, unknown[]> = {};
-  Object.keys(manifest).forEach(key => {
-    const value = manifest[key as keyof object];
-    output[value] = output[value] || [];
-    output[value].push(key);
-  });
-  return output;
-};
-
 export const formatManifestChunks = (
   entries: ManifestEntries,
   manifest: object,
 ): ManifestEntries => {
   const chunks: ManifestEntries = {};
-  const assets = invertManifest(manifest);
-  for (const entry in entries) {
-    if (!chunks[entry]) chunks[entry] = [];
-    for (const asset of entries[entry]) {
-      if (asset in assets && !asset.includes('.map')) {
-        chunks[entry].push(assets[asset as keyof object]);
+  for (const asset in manifest) {
+    const name = manifest[asset as keyof object] as string;
+    for (const entry in entries) {
+      for (const entryAsset of entries[entry]) {
+        if (name === entryAsset && !name.includes('.map')) {
+          if (!chunks[entry]) chunks[entry] = [];
+          chunks[entry].push(name);
+        }
       }
     }
   }

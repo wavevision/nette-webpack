@@ -1,3 +1,10 @@
+application:
+	mapping:
+		*: Wavevision\NetteWebpackExamples\*Module\Presenters\*Presenter
+
+services:
+	router: Wavevision\NetteWebpackExamples\Router\RouterFactory::createRouter()
+
 extensions:
 	webpack: Wavevision\NetteWebpack\DI\Extension(%debugMode%, false)
 
@@ -8,5 +15,6 @@ webpack:
 	dir: %wwwDir%/dist
 	dist: dist
 	entries:
-		tests: true
+		entry: true
+		something: false
 	manifest: manifest.json

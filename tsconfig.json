@@ -1,4 +1,8 @@
 {
   "extends": "@wavevision/coding-standard/ts/tsconfig.json",
-  "include": ["./src/assets/**/*"]
+  "exclude": ["./examples/www/dist/**/*"],
+  "include": ["./*.js", "./examples/**/*", "./src/assets/**/*", "./tests/**/*"],
+  "compilerOptions": {
+    "noEmit": false
+  }
 }

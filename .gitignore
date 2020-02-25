@@ -6,6 +6,7 @@
 .eslintcache
 .phpunit.result.cache
 /dist
+/examples/www/dist
 /node_modules
 /temp
 /vendor

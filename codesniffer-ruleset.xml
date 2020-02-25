@@ -6,6 +6,7 @@
             <property name="rootNamespaces" type="array">
                 <element key="src" value="Wavevision"/>
                 <element key="tests" value="Wavevision"/>
+                <element key="examples" value="Wavevision"/>
             </property>
         </properties>
     </rule>
