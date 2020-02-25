@@ -11,7 +11,7 @@ Webpack adapter for Nette framework consisting of:
 - [DI extension](#di-extension)
 - entry point chunks resolver **(uses webpack `manifest.json`)**
 - UI components to render assets `<script>` and `<link>` tags
-- [webpack config helper](#webpack-helper) to manage your setup consistently with `.neon` files
+- [webpack config helper](#webpack-helper) to manage your setup consistently with `neon` files
 
 ## Installation
 
@@ -138,3 +138,7 @@ The returned class exposes following methods:
 > **Note:** You can also import `Neon` helper if you want to parse and work with more `neon` files.
 
 See [example webpack config](./examples/webpack.config.ts) to see it all in action.
+
+## Credits
+
+Many️ 🙏 to [Jiří Pudil](https://github.com/jiripudil) for his [WebpackNetteAdapter](https://github.com/o2ps/WebpackNetteAdapter) which we used in our projects and served as an inspiration for this library.
