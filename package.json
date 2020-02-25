@@ -75,7 +75,7 @@
     "preversion": "yarn fix",
     "test": "jest",
     "test:coverage": "jest --coverage || true",
-    "test:coverage:report": "jest --coverage && cat temp/coverage/lcov.info | coveralls",
+    "test:coverage:report": "jest --coverage && cat temp/coverage/ts/lcov.info | coveralls",
     "ts": "tsc --noEmit",
     "ts:build": "tsc --project tsconfig.build.json"
   }
