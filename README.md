@@ -88,7 +88,7 @@ Finally, render `assets` in your layout.
 
 ```latte
 <!DOCTYPE html>
-<html class="document" lang="cs">
+<html>
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
