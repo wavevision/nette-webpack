@@ -6,16 +6,18 @@ git:
 
 php: 7.4
 
+cache:
+  yarn: true
+  directories:
+    - node_modules
+    - $HOME/.composer/cache
+
+install:
+  - yarn install
+  - composer install
+
 jobs:
   include:
-    - cache:
-        yarn: true
-        directories:
-          - node_modules
-          - $HOME/.composer/cache
-    - install:
-        - yarn installX
-        - composer install
     - script:
         - yarn ci
         - composer ci
