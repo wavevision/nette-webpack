@@ -5,11 +5,11 @@ namespace Wavevision\NetteWebpack;
 trait InjectNetteWebpackParameters
 {
 
-	protected NetteWebpackParameters $webpackParameters;
+	protected NetteWebpackParameters $netteWebpackParameters;
 
-	public function injectWebpackParameters(NetteWebpackParameters $webpackParameters): void
+	public function injectWebpackParameters(NetteWebpackParameters $netteWebpackParameters): void
 	{
-		$this->webpackParameters = $webpackParameters;
+		$this->netteWebpackParameters = $netteWebpackParameters;
 	}
 
 }

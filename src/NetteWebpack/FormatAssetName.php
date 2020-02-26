@@ -17,7 +17,7 @@ class FormatAssetName
 
 	public function process(string ...$path): string
 	{
-		return $this->webpackParameters->getUrl($this->webpackParameters->getAsset(Path::join(...$path)));
+		return $this->netteWebpackParameters->getUrl($this->netteWebpackParameters->getAsset(Path::join(...$path)));
 	}
 
 }

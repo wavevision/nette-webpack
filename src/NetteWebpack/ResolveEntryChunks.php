@@ -39,11 +39,11 @@ class ResolveEntryChunks
 	 */
 	public function resolveAll(string $entry): array
 	{
-		$entries = $this->webpackParameters->getEnabledEntries();
+		$entries = $this->netteWebpackParameters->getEnabledEntries();
 		if (!in_array($entry, $entries)) {
 			throw new InvalidState("Invalid webpack entry '$entry'.");
 		}
-		return $this->webpackParameters->getEntryChunks($entry);
+		return $this->netteWebpackParameters->getEntryChunks($entry);
 	}
 
 	/**
