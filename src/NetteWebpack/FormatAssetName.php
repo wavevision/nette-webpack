@@ -13,7 +13,7 @@ class FormatAssetName
 {
 
 	use SmartObject;
-	use InjectWebpackParameters;
+	use InjectNetteWebpackParameters;
 
 	public function process(string ...$path): string
 	{

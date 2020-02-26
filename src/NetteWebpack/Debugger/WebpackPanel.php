@@ -4,7 +4,7 @@ namespace Wavevision\NetteWebpack\Debugger;
 
 use Latte\Engine;
 use Tracy\IBarPanel;
-use Wavevision\NetteWebpack\WebpackParameters;
+use Wavevision\NetteWebpack\NetteWebpackParameters;
 
 class WebpackPanel implements IBarPanel
 {
@@ -17,9 +17,9 @@ class WebpackPanel implements IBarPanel
 
 	private Engine $latte;
 
-	private WebpackParameters $webpackParameters;
+	private NetteWebpackParameters $webpackParameters;
 
-	public function __construct(WebpackParameters $webpackParameters)
+	public function __construct(NetteWebpackParameters $webpackParameters)
 	{
 		$this->latte = new Engine();
 		$this->webpackParameters = $webpackParameters;
@@ -32,7 +32,7 @@ class WebpackPanel implements IBarPanel
 			[
 				self::ASSETS_COUNT => $this->getAssetsCount(),
 				self::ENTRIES_COUNT => $this->getEntriesCount(),
-				WebpackParameters::DEV_SERVER => $this->webpackParameters->getDevServer()->getEnabled(),
+				NetteWebpackParameters::DEV_SERVER => $this->webpackParameters->getDevServer()->getEnabled(),
 			]
 		);
 	}
@@ -46,8 +46,8 @@ class WebpackPanel implements IBarPanel
 				'basePath' => $this->webpackParameters->getUrl(),
 				self::ASSETS_COUNT => $this->getAssetsCount(),
 				self::ENTRIES_COUNT => $this->getEntriesCount(),
-				WebpackParameters::CHUNKS => $this->webpackParameters->getResolvedEntryChunks(),
-				WebpackParameters::DEV_SERVER => $this->webpackParameters->getDevServer()->getEnabled(),
+				NetteWebpackParameters::CHUNKS => $this->webpackParameters->getResolvedEntryChunks(),
+				NetteWebpackParameters::DEV_SERVER => $this->webpackParameters->getDevServer()->getEnabled(),
 			]
 		);
 	}

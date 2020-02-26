@@ -4,7 +4,7 @@ namespace Wavevision\NetteWebpack\DI;
 
 use Nette\SmartObject;
 use Wavevision\NetteWebpack\DevServer;
-use Wavevision\NetteWebpack\WebpackParameters;
+use Wavevision\NetteWebpack\NetteWebpackParameters;
 
 /**
  * @internal
@@ -39,8 +39,8 @@ final class ServiceSetup
 		return array_merge(
 			[
 				$this->devServer,
-				$this->config[WebpackParameters::DIR],
-				$this->config[WebpackParameters::DIST],
+				$this->config[NetteWebpackParameters::DIR],
+				$this->config[NetteWebpackParameters::DIST],
 			],
 			$parameters
 		);

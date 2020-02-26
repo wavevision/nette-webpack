@@ -15,7 +15,7 @@ class ResolveEntryChunks
 {
 
 	use SmartObject;
-	use InjectWebpackParameters;
+	use InjectNetteWebpackParameters;
 
 	/**
 	 * @param string[] ...$chunks

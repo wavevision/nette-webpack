@@ -6,7 +6,7 @@ use Nette\SmartObject;
 use Wavevision\NetteWebpack\Exceptions\InvalidState;
 use Wavevision\Utils\Path;
 
-class WebpackParameters
+class NetteWebpackParameters
 {
 
 	use SmartObject;

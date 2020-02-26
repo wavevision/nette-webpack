@@ -5,7 +5,7 @@ namespace Wavevision\NetteWebpackTests;
 use Wavevision\NetteWebpack\DevServer;
 use Wavevision\NetteWebpack\Exceptions\InvalidState;
 use Wavevision\NetteWebpack\LoadManifest;
-use Wavevision\NetteWebpack\WebpackParameters;
+use Wavevision\NetteWebpack\NetteWebpackParameters;
 
 class WebpackParametersTest extends DIContainerTestCase
 {
@@ -60,9 +60,9 @@ class WebpackParametersTest extends DIContainerTestCase
 		$this->assertFalse($this->createService()->isProduction());
 	}
 
-	private function createService(): WebpackParameters
+	private function createService(): NetteWebpackParameters
 	{
-		$webpackParameters = new WebpackParameters(
+		$webpackParameters = new NetteWebpackParameters(
 			new DevServer([DevServer::ENABLED => true, DevServer::URL => 'http://localhost:9006']),
 			'/dist',
 			'dist',
@@ -78,10 +78,10 @@ class WebpackParametersTest extends DIContainerTestCase
 		return $webpackParameters;
 	}
 
-	private function getService(): WebpackParameters
+	private function getService(): NetteWebpackParameters
 	{
-		/** @var WebpackParameters $webpackParameters */
-		$webpackParameters = $this->getContainer()->getByType(WebpackParameters::class);
+		/** @var NetteWebpackParameters $webpackParameters */
+		$webpackParameters = $this->getContainer()->getByType(NetteWebpackParameters::class);
 		return $webpackParameters;
 	}
 
