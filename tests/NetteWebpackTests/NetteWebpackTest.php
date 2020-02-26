@@ -62,7 +62,7 @@ class NetteWebpackTest extends DIContainerTestCase
 
 	private function createService(): NetteWebpack
 	{
-		$webpackParameters = new NetteWebpack(
+		$netteWebpack = new NetteWebpack(
 			new DevServer([DevServer::ENABLED => true, DevServer::URL => 'http://localhost:9006']),
 			'/dist',
 			'dist',
@@ -74,15 +74,15 @@ class NetteWebpackTest extends DIContainerTestCase
 			->expects($this->atMost(1))
 			->method('process')
 			->willReturn([]);
-		$webpackParameters->injectLoadManifest($loadManifest);
-		return $webpackParameters;
+		$netteWebpack->injectLoadManifest($loadManifest);
+		return $netteWebpack;
 	}
 
 	private function getService(): NetteWebpack
 	{
-		/** @var NetteWebpack $webpackParameters */
-		$webpackParameters = $this->getContainer()->getByType(NetteWebpack::class);
-		return $webpackParameters;
+		/** @var NetteWebpack $netteWebpack */
+		$netteWebpack = $this->getContainer()->getByType(NetteWebpack::class);
+		return $netteWebpack;
 	}
 
 }

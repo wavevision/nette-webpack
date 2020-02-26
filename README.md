@@ -111,7 +111,7 @@ Finally, render `assets` in your layout.
 
 Should you need it, you can inject and use following services to further customize your setup:
 
-- [`NetteWebpackParameters`](./src/NetteWebpack/NetteWebpackParameters.php) – provides basic parameters to work with the extension
+- [`NetteWebpack`](./src/NetteWebpack/NetteWebpack.php) – provides basic methods to work with the extension
 - [`FormatAssetName`](./src/NetteWebpack/FormatAssetName.php) – formats and resolves asset URL based on provided name
 - [`FormatChunkName`](./src/NetteWebpack/FormatChunkName.php) – formats chunk names for specific content types and resolves their URL
 

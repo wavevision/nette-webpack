@@ -7,7 +7,7 @@ trait InjectNetteWebpack
 
 	protected NetteWebpack $netteWebpack;
 
-	public function injectWebpackParameters(NetteWebpack $netteWebpack): void
+	public function injectNetteWebpack(NetteWebpack $netteWebpack): void
 	{
 		$this->netteWebpack = $netteWebpack;
 	}

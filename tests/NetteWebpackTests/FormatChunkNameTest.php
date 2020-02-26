@@ -28,17 +28,17 @@ class FormatChunkNameTest extends UnitTestCase
 	private function createService(): FormatChunkName
 	{
 		$service = new FormatChunkName();
-		$webpackParameters = $this->createMock(NetteWebpack::class);
-		$webpackParameters
+		$netteWebpack = $this->createMock(NetteWebpack::class);
+		$netteWebpack
 			->expects($this->once())
 			->method('getUrl')
 			->willReturnArgument(0);
-		$webpackParameters
+		$netteWebpack
 			->expects($this->once())
 			->method('getAsset')
 			->willReturnArgument(0);
 		$formatAssetName = new FormatAssetName();
-		$formatAssetName->injectWebpackParameters($webpackParameters);
+		$formatAssetName->injectNetteWebpack($netteWebpack);
 		$service->injectFormatAssetName($formatAssetName);
 		return $service;
 	}

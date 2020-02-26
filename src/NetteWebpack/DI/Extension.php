@@ -69,14 +69,14 @@ class Extension extends CompilerExtension
 		$config = $this->getConfig();
 		$devServer = new DevServer($config[NetteWebpack::DEV_SERVER]);
 		$serviceSetup = new ServiceSetup($devServer, $config);
-		$webpackParameters = $builder->addDefinition($this->prefix('webpackParameters'));
-		$webpackParametersSetup = $serviceSetup->get($config[NetteWebpack::ENTRIES], $this->isProduction());
+		$netteWebpack = $builder->addDefinition($this->prefix('netteWebpack'));
+		$netteWebpackSetup = $serviceSetup->get($config[NetteWebpack::ENTRIES], $this->isProduction());
 		$loadManifestSetup = $serviceSetup->get($config[NetteWebpack::MANIFEST], $this->consoleMode);
 		if ($this->isProduction()) {
 			$loadManifest = new LoadManifest(...$loadManifestSetup);
-			$webpackParametersSetup[] = $this->consoleMode ? null : $loadManifest->process();
-			$webpackParameters
-				->setFactory(NetteWebpack::class, $webpackParametersSetup)
+			$netteWebpackSetup[] = $this->consoleMode ? null : $loadManifest->process();
+			$netteWebpack
+				->setFactory(NetteWebpack::class, $netteWebpackSetup)
 				->addSetup('injectLoadManifest', [$loadManifest]);
 			$this->compiler->addDependencies([$loadManifest->getManifestPath()]);
 		} else {
@@ -84,8 +84,8 @@ class Extension extends CompilerExtension
 				->addDefinition($this->prefix('loadManifest'))
 				->setFactory(LoadManifest::class, $loadManifestSetup)
 				->setAutowired(false);
-			$webpackParameters
-				->setFactory(NetteWebpack::class, $webpackParametersSetup)
+			$netteWebpack
+				->setFactory(NetteWebpack::class, $netteWebpackSetup)
 				->addSetup('injectLoadManifest', [$loadManifest]);
 		}
 		$this->loadDefinitionsFromConfig($this->getServices());
@@ -96,7 +96,7 @@ class Extension extends CompilerExtension
 		$builder = $this->getContainerBuilder();
 		$config = $this->getConfig();
 		if ($config[WebpackPanel::DEBUGGER] && interface_exists(IBarPanel::class)) {
-			$definition = $builder->getDefinition($this->prefix('webpackParameters'));
+			$definition = $builder->getDefinition($this->prefix('netteWebpack'));
 			if ($definition instanceof ServiceDefinition) {
 				$definition->addSetup('@Tracy\Bar::addPanel', [new Statement(WebpackPanel::class)]);
 			}
