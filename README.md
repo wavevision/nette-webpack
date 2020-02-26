@@ -58,13 +58,13 @@ webpack:
     manifest: manifest.json
 ```
 
-- _`debugger: boolean`_ – enable [Tracy](https://github.com/nette/tracy) panel with useful development information
-- _`devServer.enabled: boolean`_ – serve assets from `webpack-dev-server`
-- _`devServer.url: string`_ – `webpack-dev-server` public URL
-- _`dir: string`_ – absolute path to webpack build directory
-- _`dist: string`_ – webpack build directory name
-- _`entries: Record<string, boolean>`_ – webpack entry points that should be considered when resolving assets
-- _`manifest: string`_ – webpack manifest name
+- **`debugger: boolean`** – enable [Tracy](https://github.com/nette/tracy) panel with useful development information
+- **`devServer.enabled: boolean`** – serve assets from `webpack-dev-server`
+- **`devServer.url: string`** – `webpack-dev-server` public URL
+- **`dir: string`** – absolute path to webpack build directory
+- **`dist: string`** – webpack build directory name
+- **`entries: Record<string, boolean>`** – webpack entry points that should be considered when resolving assets
+- **`manifest: string`** – webpack manifest name
 
 Then, setup entry chunks.
 
