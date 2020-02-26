@@ -4,7 +4,7 @@ namespace Wavevision\NetteWebpack\Debugger;
 
 use Latte\Engine;
 use Tracy\IBarPanel;
-use Wavevision\NetteWebpack\NetteWebpackParameters;
+use Wavevision\NetteWebpack\NetteWebpack;
 
 class WebpackPanel implements IBarPanel
 {
@@ -17,12 +17,12 @@ class WebpackPanel implements IBarPanel
 
 	private Engine $latte;
 
-	private NetteWebpackParameters $webpackParameters;
+	private NetteWebpack $netteWebpack;
 
-	public function __construct(NetteWebpackParameters $webpackParameters)
+	public function __construct(NetteWebpack $netteWebpack)
 	{
 		$this->latte = new Engine();
-		$this->webpackParameters = $webpackParameters;
+		$this->netteWebpack = $netteWebpack;
 	}
 
 	public function getTab(): string
@@ -32,7 +32,7 @@ class WebpackPanel implements IBarPanel
 			[
 				self::ASSETS_COUNT => $this->getAssetsCount(),
 				self::ENTRIES_COUNT => $this->getEntriesCount(),
-				NetteWebpackParameters::DEV_SERVER => $this->webpackParameters->getDevServer()->getEnabled(),
+				NetteWebpack::DEV_SERVER => $this->netteWebpack->getDevServer()->getEnabled(),
 			]
 		);
 	}
@@ -42,24 +42,24 @@ class WebpackPanel implements IBarPanel
 		return $this->latte->renderToString(
 			$this->getTemplate('panel'),
 			[
-				'assets' => $this->webpackParameters->getResolvedAssetsWithoutEntryChunks(),
-				'basePath' => $this->webpackParameters->getUrl(),
+				'assets' => $this->netteWebpack->getResolvedAssetsWithoutEntryChunks(),
+				'basePath' => $this->netteWebpack->getUrl(),
 				self::ASSETS_COUNT => $this->getAssetsCount(),
 				self::ENTRIES_COUNT => $this->getEntriesCount(),
-				NetteWebpackParameters::CHUNKS => $this->webpackParameters->getResolvedEntryChunks(),
-				NetteWebpackParameters::DEV_SERVER => $this->webpackParameters->getDevServer()->getEnabled(),
+				NetteWebpack::CHUNKS => $this->netteWebpack->getResolvedEntryChunks(),
+				NetteWebpack::DEV_SERVER => $this->netteWebpack->getDevServer()->getEnabled(),
 			]
 		);
 	}
 
 	private function getAssetsCount(): int
 	{
-		return count($this->webpackParameters->getResolvedAssets());
+		return count($this->netteWebpack->getResolvedAssets());
 	}
 
 	private function getEntriesCount(): int
 	{
-		return count(array_keys($this->webpackParameters->getResolvedEntryChunks()));
+		return count(array_keys($this->netteWebpack->getResolvedEntryChunks()));
 	}
 
 	private function getTemplate(string $template): string

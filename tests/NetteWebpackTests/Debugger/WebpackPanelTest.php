@@ -3,7 +3,7 @@
 namespace Wavevision\NetteWebpackTests\Debugger;
 
 use Wavevision\NetteWebpack\Debugger\WebpackPanel;
-use Wavevision\NetteWebpack\NetteWebpackParameters;
+use Wavevision\NetteWebpack\NetteWebpack;
 use Wavevision\NetteWebpackTests\DIContainerTestCase;
 
 class WebpackPanelTest extends DIContainerTestCase
@@ -21,7 +21,7 @@ class WebpackPanelTest extends DIContainerTestCase
 
 	private function createPanel(): WebpackPanel
 	{
-		return new WebpackPanel($this->getContainer()->getByType(NetteWebpackParameters::class));
+		return new WebpackPanel($this->getContainer()->getByType(NetteWebpack::class));
 	}
 
 }

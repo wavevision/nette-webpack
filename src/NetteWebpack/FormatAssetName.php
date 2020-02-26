@@ -13,11 +13,11 @@ class FormatAssetName
 {
 
 	use SmartObject;
-	use InjectNetteWebpackParameters;
+	use InjectNetteWebpack;
 
 	public function process(string ...$path): string
 	{
-		return $this->netteWebpackParameters->getUrl($this->netteWebpackParameters->getAsset(Path::join(...$path)));
+		return $this->netteWebpack->getUrl($this->netteWebpack->getAsset(Path::join(...$path)));
 	}
 
 }

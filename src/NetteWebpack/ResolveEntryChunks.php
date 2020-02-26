@@ -15,7 +15,7 @@ class ResolveEntryChunks
 {
 
 	use SmartObject;
-	use InjectNetteWebpackParameters;
+	use InjectNetteWebpack;
 
 	/**
 	 * @param string[] ...$chunks
@@ -39,11 +39,11 @@ class ResolveEntryChunks
 	 */
 	public function resolveAll(string $entry): array
 	{
-		$entries = $this->netteWebpackParameters->getEnabledEntries();
+		$entries = $this->netteWebpack->getEnabledEntries();
 		if (!in_array($entry, $entries)) {
 			throw new InvalidState("Invalid webpack entry '$entry'.");
 		}
-		return $this->netteWebpackParameters->getEntryChunks($entry);
+		return $this->netteWebpack->getEntryChunks($entry);
 	}
 
 	/**

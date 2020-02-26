@@ -4,7 +4,7 @@ namespace Wavevision\NetteWebpackTests;
 
 use Wavevision\NetteWebpack\FormatAssetName;
 use Wavevision\NetteWebpack\FormatChunkName;
-use Wavevision\NetteWebpack\NetteWebpackParameters;
+use Wavevision\NetteWebpack\NetteWebpack;
 use Wavevision\Utils\ContentTypes;
 
 class FormatChunkNameTest extends UnitTestCase
@@ -28,7 +28,7 @@ class FormatChunkNameTest extends UnitTestCase
 	private function createService(): FormatChunkName
 	{
 		$service = new FormatChunkName();
-		$webpackParameters = $this->createMock(NetteWebpackParameters::class);
+		$webpackParameters = $this->createMock(NetteWebpack::class);
 		$webpackParameters
 			->expects($this->once())
 			->method('getUrl')

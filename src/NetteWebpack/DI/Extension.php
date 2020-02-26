@@ -13,7 +13,7 @@ use Tracy\IBarPanel;
 use Wavevision\NetteWebpack\Debugger\WebpackPanel;
 use Wavevision\NetteWebpack\DevServer;
 use Wavevision\NetteWebpack\LoadManifest;
-use Wavevision\NetteWebpack\NetteWebpackParameters;
+use Wavevision\NetteWebpack\NetteWebpack;
 use Wavevision\Utils\Path;
 use Wavevision\Utils\Server;
 
@@ -47,18 +47,18 @@ class Extension extends CompilerExtension
 		return Expect::structure(
 			[
 				WebpackPanel::DEBUGGER => Expect::bool($this->debugMode),
-				NetteWebpackParameters::DEV_SERVER => Expect::structure(
+				NetteWebpack::DEV_SERVER => Expect::structure(
 					[
 						DevServer::ENABLED => Expect::bool($this->debugMode),
 						DevServer::URL => Expect::string(self::DEFAULT_URL),
 					]
 				)->castTo('array'),
-				NetteWebpackParameters::DIR => Expect::string(
-					Path::join($this->getParameter('wwwDir'), NetteWebpackParameters::DIST)
+				NetteWebpack::DIR => Expect::string(
+					Path::join($this->getParameter('wwwDir'), NetteWebpack::DIST)
 				),
-				NetteWebpackParameters::DIST => Expect::string(NetteWebpackParameters::DIST),
-				NetteWebpackParameters::ENTRIES => Expect::arrayOf(Expect::bool())->default([]),
-				NetteWebpackParameters::MANIFEST => Expect::string(self::DEFAULT_MANIFEST),
+				NetteWebpack::DIST => Expect::string(NetteWebpack::DIST),
+				NetteWebpack::ENTRIES => Expect::arrayOf(Expect::bool())->default([]),
+				NetteWebpack::MANIFEST => Expect::string(self::DEFAULT_MANIFEST),
 			]
 		)->castTo('array');
 	}
@@ -67,16 +67,16 @@ class Extension extends CompilerExtension
 	{
 		$builder = $this->getContainerBuilder();
 		$config = $this->getConfig();
-		$devServer = new DevServer($config[NetteWebpackParameters::DEV_SERVER]);
+		$devServer = new DevServer($config[NetteWebpack::DEV_SERVER]);
 		$serviceSetup = new ServiceSetup($devServer, $config);
 		$webpackParameters = $builder->addDefinition($this->prefix('webpackParameters'));
-		$webpackParametersSetup = $serviceSetup->get($config[NetteWebpackParameters::ENTRIES], $this->isProduction());
-		$loadManifestSetup = $serviceSetup->get($config[NetteWebpackParameters::MANIFEST], $this->consoleMode);
+		$webpackParametersSetup = $serviceSetup->get($config[NetteWebpack::ENTRIES], $this->isProduction());
+		$loadManifestSetup = $serviceSetup->get($config[NetteWebpack::MANIFEST], $this->consoleMode);
 		if ($this->isProduction()) {
 			$loadManifest = new LoadManifest(...$loadManifestSetup);
 			$webpackParametersSetup[] = $this->consoleMode ? null : $loadManifest->process();
 			$webpackParameters
-				->setFactory(NetteWebpackParameters::class, $webpackParametersSetup)
+				->setFactory(NetteWebpack::class, $webpackParametersSetup)
 				->addSetup('injectLoadManifest', [$loadManifest]);
 			$this->compiler->addDependencies([$loadManifest->getManifestPath()]);
 		} else {
@@ -85,7 +85,7 @@ class Extension extends CompilerExtension
 				->setFactory(LoadManifest::class, $loadManifestSetup)
 				->setAutowired(false);
 			$webpackParameters
-				->setFactory(NetteWebpackParameters::class, $webpackParametersSetup)
+				->setFactory(NetteWebpack::class, $webpackParametersSetup)
 				->addSetup('injectLoadManifest', [$loadManifest]);
 		}
 		$this->loadDefinitionsFromConfig($this->getServices());
@@ -108,7 +108,7 @@ class Extension extends CompilerExtension
 		$initialize = $class->getMethod('initialize');
 		$initialize->addBody(
 			'$this->getByType(?)->injectRequest($this->getByType(?));',
-			[NetteWebpackParameters::class, IRequest::class]
+			[NetteWebpack::class, IRequest::class]
 		);
 	}
 
