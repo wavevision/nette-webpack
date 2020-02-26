@@ -31,9 +31,11 @@
     "sort-packages": true
   },
   "require": {
-    "php": ">=7.4",
+    "latte/latte": "^2.6",
     "nette/di": "^3.0",
     "nette/http": "^3.0",
+    "php": ">=7.4",
+    "tracy/tracy": "^2.7",
     "wavevision/props-control": "^4.2",
     "wavevision/utils": "^2.4"
   },

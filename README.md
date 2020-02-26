@@ -48,6 +48,7 @@ You can configure the extension as follows _(default values)_.
 
 ```neon
 webpack:
+    debugger: %debugMode%
     devServer:
         enabled: %debugMode%
         url: http://localhost:9006
@@ -57,7 +58,13 @@ webpack:
     manifest: manifest.json
 ```
 
-**The `entries` param specifies your webpack entry points. See [example config](./examples/config/common.neon) for further usage.**
+- _`debugger: boolean`_ – enable [Tracy](https://github.com/nette/tracy) panel with useful development information
+- _`devServer.enabled: boolean`_ – serve assets from `webpack-dev-server`
+- _`devServer.url: string`_ – `webpack-dev-server` public URL
+- _`dir: string`_ – absolute path to webpack build directory
+- _`dist: string`_ – webpack build directory name
+- _`entries: Record<string, boolean>`_ – webpack entry points that should be considered when resolving assets
+- _`manifest: string`_ – webpack manifest name
 
 Then, setup entry chunks.
 
@@ -105,7 +112,8 @@ Finally, render `assets` in your layout.
 Should you need it, you can inject and use following services to further customize your setup:
 
 - [`WebpackParameters`](./src/NetteWebpack/WebpackParameters.php) – provides basic parameters to work with the extension
-- [`FormatChunkName`](./src/NetteWebpack/FormatChunkName.php) – formats asset chunk names for specific content types and resolves their URL
+- [`FormatAssetName`](./src/NetteWebpack/FormatAssetName.php) – formats and resolves asset URL based on provided name
+- [`FormatChunkName`](./src/NetteWebpack/FormatChunkName.php) – formats chunk names for specific content types and resolves their URL
 
 ### Webpack helper
 

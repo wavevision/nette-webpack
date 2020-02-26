@@ -4,6 +4,7 @@
     <property name="codeSnifferRuleset" value="codesniffer-ruleset.xml"/>
     <property name="coverage" value="${temp}/coverage/php"/>
     <property name="coverageClover" value="${coverage}/coverage.xml"/>
+    <property name="examples" value="examples"/>
     <property name="phpBin" value="php"/>
     <property name="src" value="src"/>
     <property name="temp" value="temp"/>
@@ -51,6 +52,7 @@
             <arg value="${phpBin}"/>
             <arg value="${src}"/>
             <arg value="${tests}"/>
+            <arg value="${examples}"/>
         </exec>
     </target>
 
@@ -66,6 +68,7 @@
             <arg value="--extensions=${phpBin}"/>
             <arg value="${src}"/>
             <arg value="${tests}"/>
+            <arg value="${examples}"/>
         </exec>
     </target>
 
@@ -81,6 +84,7 @@
             <arg value="--extensions=${phpBin}"/>
             <arg value="${src}"/>
             <arg value="${tests}"/>
+            <arg value="${examples}"/>
         </exec>
     </target>
 
@@ -94,6 +98,7 @@
             <arg value="analyze"/>
             <arg value="${src}"/>
             <arg value="${tests}"/>
+            <arg value="${examples}"/>
             <arg value="--level"/>
             <arg value="max"/>
         </exec>

@@ -1,5 +1,7 @@
 # Generated file, do not modify directly!
 services:
+	- factory: Wavevision\NetteWebpack\FormatAssetName
+	  inject: true
 	- factory: Wavevision\NetteWebpack\FormatChunkName
 	  inject: true
 	- factory: Wavevision\NetteWebpack\ResolveEntryChunks

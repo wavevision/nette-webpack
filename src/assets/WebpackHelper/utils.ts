@@ -11,7 +11,7 @@ export const formatManifestChunks = (
       if (!chunks[entry]) chunks[entry] = [];
       for (const entryAsset of entries[entry]) {
         if (name === entryAsset && !name.includes('.map')) {
-          chunks[entry].push(name);
+          chunks[entry].push(asset);
         }
       }
     }

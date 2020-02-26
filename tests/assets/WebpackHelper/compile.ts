@@ -9,8 +9,8 @@ export default (): void => {
       const compiler = webpack(config);
       compiler.run((err, stats) => {
         expect(err).toBeNull();
-        expect(stats.toJson().assets).toHaveLength(5);
-        expect(stats.toString('minimal')).toContain('3 module');
+        expect(stats.toJson().assets).toHaveLength(6);
+        expect(stats.toString('minimal')).toContain('4 modules');
         done();
       });
     }));

@@ -20,6 +20,7 @@ class Bootstrap
 	{
 		$configurator = new Configurator();
 		$rootDir = self::rootDir();
+		$configurator->enableTracy($rootDir->string('examples', 'log'));
 		$configurator
 			->setTimeZone('Europe/Prague')
 			->setTempDirectory($rootDir->string('temp'))

@@ -14,7 +14,7 @@ class FormatChunkName
 {
 
 	use SmartObject;
-	use InjectWebpackParameters;
+	use InjectFormatAssetName;
 
 	public function formatScript(string $name): string
 	{
@@ -31,7 +31,7 @@ class FormatChunkName
 		if (!self::isFormatted($name, $contentType)) {
 			$name = ContentTypes::getFilename($name, $contentType);
 		}
-		return $this->webpackParameters->getUrl($this->webpackParameters->getAsset($name));
+		return $this->formatAssetName->process($name);
 	}
 
 	public static function isFormatted(string $name, string $contentType): bool

@@ -29,6 +29,7 @@ class WebpackHelper {
       getManifestOptions({
         ...(this.options.manifestOptions || {}),
         fileName: this.getManifest(),
+        publicPath: '',
       }),
     );
 

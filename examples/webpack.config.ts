@@ -26,16 +26,21 @@ const config: Configuration = {
   module: {
     rules: [
       { test: /\.css$/, use: [MiniCssExtractPlugin.loader, 'css-loader'] },
+      {
+        test: /\.png$/,
+        loader: 'file-loader',
+        options: { name: '[folder]/[name].[ext]?[hash]' },
+      },
       { test: /\.ts$/, exclude: /node_modules/, loader: 'ts-loader' },
     ],
   },
   output: {
-    filename: '[name].js',
+    filename: '[name].js?[hash]',
     path: helper.getOutputPath(),
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({ filename: '[name].css' }),
+    new MiniCssExtractPlugin({ filename: '[name].css?[hash]' }),
     helper.createManifestPlugin(),
   ],
   resolve: {

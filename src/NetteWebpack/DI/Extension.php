@@ -3,10 +3,14 @@
 namespace Wavevision\NetteWebpack\DI;
 
 use Nette\DI\CompilerExtension;
+use Nette\DI\Definitions\ServiceDefinition;
+use Nette\DI\Definitions\Statement;
 use Nette\Http\IRequest;
 use Nette\PhpGenerator\ClassType;
 use Nette\Schema\Expect;
 use Nette\Schema\Schema;
+use Tracy\IBarPanel;
+use Wavevision\NetteWebpack\Debugger\WebpackPanel;
 use Wavevision\NetteWebpack\DevServer;
 use Wavevision\NetteWebpack\LoadManifest;
 use Wavevision\NetteWebpack\WebpackParameters;
@@ -30,10 +34,19 @@ class Extension extends CompilerExtension
 		$this->debugMode = $debugMode;
 	}
 
+	/**
+	 * @return mixed[]
+	 */
+	public function getConfig(): array
+	{
+		return (array)parent::getConfig();
+	}
+
 	public function getConfigSchema(): Schema
 	{
 		return Expect::structure(
 			[
+				WebpackPanel::DEBUGGER => Expect::bool($this->debugMode),
 				WebpackParameters::DEV_SERVER => Expect::structure(
 					[
 						DevServer::ENABLED => Expect::bool($this->debugMode),
@@ -53,7 +66,7 @@ class Extension extends CompilerExtension
 	public function loadConfiguration(): void
 	{
 		$builder = $this->getContainerBuilder();
-		$config = (array)$this->getConfig();
+		$config = $this->getConfig();
 		$devServer = new DevServer($config[WebpackParameters::DEV_SERVER]);
 		$serviceSetup = new ServiceSetup($devServer, $config);
 		$webpackParameters = $builder->addDefinition($this->prefix('webpackParameters'));
@@ -76,6 +89,18 @@ class Extension extends CompilerExtension
 				->addSetup('injectLoadManifest', [$loadManifest]);
 		}
 		$this->loadDefinitionsFromConfig($this->getServices());
+	}
+
+	public function beforeCompile(): void
+	{
+		$builder = $this->getContainerBuilder();
+		$config = $this->getConfig();
+		if ($config[WebpackPanel::DEBUGGER] && interface_exists(IBarPanel::class)) {
+			$definition = $builder->getDefinition($this->prefix('webpackParameters'));
+			if ($definition instanceof ServiceDefinition) {
+				$definition->addSetup('@Tracy\Bar::addPanel', [new Statement(WebpackPanel::class)]);
+			}
+		}
 	}
 
 	public function afterCompile(ClassType $class): void

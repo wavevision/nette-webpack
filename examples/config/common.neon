@@ -9,6 +9,7 @@ extensions:
 	webpack: Wavevision\NetteWebpack\DI\Extension(%debugMode%, false)
 
 webpack:
+	debugger: %debugMode%
 	devServer:
 		enabled: false
 		url: http://localhost:9006

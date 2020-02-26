@@ -2,6 +2,7 @@
 
 namespace Wavevision\NetteWebpackTests;
 
+use Wavevision\NetteWebpack\FormatAssetName;
 use Wavevision\NetteWebpack\FormatChunkName;
 use Wavevision\NetteWebpack\WebpackParameters;
 use Wavevision\Utils\ContentTypes;
@@ -36,7 +37,9 @@ class FormatChunkNameTest extends UnitTestCase
 			->expects($this->once())
 			->method('getAsset')
 			->willReturnArgument(0);
-		$service->injectWebpackParameters($webpackParameters);
+		$formatAssetName = new FormatAssetName();
+		$formatAssetName->injectWebpackParameters($webpackParameters);
+		$service->injectFormatAssetName($formatAssetName);
 		return $service;
 	}
 

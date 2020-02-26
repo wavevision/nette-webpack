@@ -41,6 +41,19 @@ class WebpackParametersTest extends DIContainerTestCase
 		$this->getService()->getEntryChunks('test');
 	}
 
+	public function testGetResolvedAssets(): void
+	{
+		$this->assertEquals([], $this->getService()->getResolvedAssets());
+	}
+
+	public function testGetResolvedAssetsWithoutEntryChunks(): void
+	{
+		$service = $this->getService();
+		$service->getAsset('images/image.png');
+		$service->getEntryChunks('entry');
+		$this->assertContains('images/image.png', array_keys($service->getResolvedAssetsWithoutEntryChunks()));
+	}
+
 	public function testIsProduction(): void
 	{
 		$this->assertTrue($this->getService()->isProduction());

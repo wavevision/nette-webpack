@@ -1,0 +1,93 @@
+<style class="tracy-debug">
+	#tracy-debug .webpack-panel h2 {
+		margin: 0.5em 0 0.25em 0;
+		font-size: 1.25em;
+		font-weight: 500;
+	}
+
+	#tracy-debug .webpack-panel .dev-server .availability::before {
+		content: '';
+		display: inline-block;
+		margin-right: 2px;
+		width: 10px;
+		height: 10px;
+		vertical-align: middle;
+		border-radius: 50%;
+	}
+
+	#tracy-debug .webpack-panel .dev-server .disabled {
+		font-weight: bold;
+		color: #EE4040;
+	}
+
+	#tracy-debug .webpack-panel .dev-server .disabled::before {
+		background-color: #EE4040;
+	}
+
+	#tracy-debug .webpack-panel .dev-server .enabled::before {
+		background-color: #BDE678;
+	}
+
+	#tracy-debug .webpack-panel table {
+		font: 9pt/1.5 Consolas, monospace;
+	}
+</style>
+
+<div class="webpack-panel">
+	<h1>Resolved
+		{$entriesCount} entr{if $entriesCount > 1}ies{else}y{/if}
+		with {$assetsCount} asset{if $assetsCount > 1}s{/if}
+	</h1>
+	<div class="tracy-inner">
+		<div class="tracy-inner-container">
+			<p class="dev-server">
+				Dev server is
+				{if $devServer}
+					<span class="availability enabled">enabled</span>
+				{else}
+					<span class="availability disabled">disabled</span>
+				{/if}
+			</p>
+			<p>Serving assets from <code>{$basePath}</code></p>
+			<h2>Entry chunks</h2>
+			{foreach $chunks as $entry => $chunk}
+				<h3><code><strong>{$entry}</strong></code></h3>
+				<table>
+					<thead>
+					<tr>
+						<th>Chunk</th>
+						<th>Resolution</th>
+					<tr>
+					</thead>
+					<tbody n:inner-foreach="$chunk as $name => $resolution">
+					<tr>
+						<td>{$name}</td>
+						<td>
+							<a href="{$basePath}/{$resolution}">{$resolution}</a>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			{/foreach}
+			{if count($assets) > 0}
+				<h2>Other assets</h2>
+				<table>
+					<thead>
+					<tr>
+						<th>Asset</th>
+						<th>Resolution</th>
+					<tr>
+					</thead>
+					<tbody n:inner-foreach="$assets as $name => $resolution">
+					<tr>
+						<td>{$name}</td>
+						<td>
+							<a href="{$basePath}/{$resolution}">{$resolution}</a>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			{/if}
+		</div>
+	</div>
+</div>

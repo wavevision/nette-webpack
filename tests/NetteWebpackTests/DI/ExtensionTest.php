@@ -13,16 +13,23 @@ use Wavevision\NetteWebpackTests\UnitTestCase;
 class ExtensionTest extends UnitTestCase
 {
 
-	public function testLoadConfiguration(): void
+	public function testBeforeCompile(): void
+	{
+		$extension = $this->createExtension();
+		$extension->loadConfiguration();
+		$extension->beforeCompile();
+		$this->assertNull(null);
+	}
+
+	private function createExtension(): Extension
 	{
 		$extension = new Extension(false);
 		$extension->setConfig($this->loadConfig());
 		$builder = new ContainerBuilder();
 		$builder->parameters['wwwDir'] = '/www';
 		$builder->parameters['productionMode'] = false;
-		$extension->setCompiler(new Compiler($builder), 'test');
-		$extension->loadConfiguration();
-		$this->assertNull(null);
+		$extension->setCompiler(new Compiler($builder), 'webpack');
+		return $extension;
 	}
 
 	/**

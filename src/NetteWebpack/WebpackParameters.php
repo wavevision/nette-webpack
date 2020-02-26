@@ -25,6 +25,16 @@ class WebpackParameters
 
 	public const MANIFEST = 'manifest';
 
+	/**
+	 * @var array<string, string>
+	 */
+	private array $assets;
+
+	/**
+	 * @var array<string, array<string>>
+	 */
+	private array $chunks;
+
 	private DevServer $devServer;
 
 	private string $dir;
@@ -55,6 +65,8 @@ class WebpackParameters
 		bool $productionMode,
 		?array $manifest = null
 	) {
+		$this->assets = [];
+		$this->chunks = [];
 		$this->devServer = $devServer;
 		$this->dir = $dir;
 		$this->dist = $dist;
@@ -65,12 +77,15 @@ class WebpackParameters
 
 	public function getAsset(string $name): string
 	{
-		/** @var string|null $asset */
-		$asset = $this->getManifest()[$name] ?? null;
-		if (!$asset) {
-			throw new InvalidState("Webpack asset '$name' does not exist.");
+		if (!isset($this->assets[$name])) {
+			/** @var string|null $asset */
+			$asset = $this->getManifest()[$name] ?? null;
+			if (!$asset) {
+				throw new InvalidState("Webpack asset '$name' does not exist.");
+			}
+			$this->assets[$name] = $asset;
 		}
-		return $asset;
+		return $this->assets[$name];
 	}
 
 	public function getBasePath(): string
@@ -129,21 +144,19 @@ class WebpackParameters
 	 */
 	public function getEntryChunks(string $entry): array
 	{
-		$chunks = $this->getChunks()[$entry] ?? null;
-		if (!$chunks) {
-			throw new InvalidState("Webpack chunks for entry '$entry' do not exist.");
+		if (!isset($this->chunks[$entry])) {
+			$chunks = $this->getChunks()[$entry] ?? null;
+			if (!$chunks) {
+				throw new InvalidState("Webpack chunks for entry '$entry' do not exist.");
+			}
+			$this->chunks[$entry] = $chunks;
 		}
-		return $chunks;
+		return $this->chunks[$entry];
 	}
 
 	public function getUrl(string ...$path): string
 	{
 		return Path::join($this->getBasePath(), $this->getDist(), ...$path);
-	}
-
-	public function isProduction(): bool
-	{
-		return $this->productionMode;
 	}
 
 	/**
@@ -155,6 +168,51 @@ class WebpackParameters
 			$this->manifest = $this->loadManifest->process();
 		}
 		return $this->manifest;
+	}
+
+	/**
+	 * @return array<string, string>
+	 */
+	public function getResolvedAssets(): array
+	{
+		return $this->assets;
+	}
+
+	/**
+	 * @return array<string, string>
+	 */
+	public function getResolvedAssetsWithoutEntryChunks(): array
+	{
+		$assets = $this->getResolvedAssets();
+		$entryChunks = $this->getResolvedEntryChunks();
+		foreach ($entryChunks as $chunks) {
+			foreach (array_keys($chunks) as $chunk) {
+				unset($assets[$chunk]);
+			}
+		}
+		return $assets;
+	}
+
+	/**
+	 * @return array<string, array<string>>
+	 */
+	public function getResolvedEntryChunks(): array
+	{
+		$entryChunks = [];
+		foreach ($this->chunks as $entry => $chunks) {
+			if (!isset($entryChunks[$entry])) {
+				$entryChunks[$entry] = [];
+			}
+			foreach ($chunks as $chunk) {
+				$entryChunks[$entry][$chunk] = $this->getAsset($chunk);
+			}
+		}
+		return $entryChunks;
+	}
+
+	public function isProduction(): bool
+	{
+		return $this->productionMode;
 	}
 
 	/**
