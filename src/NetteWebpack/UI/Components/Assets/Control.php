@@ -8,6 +8,7 @@ use Wavevision\NetteWebpack\Exceptions\InvalidState;
 use Wavevision\NetteWebpack\UI\BaseControl;
 use Wavevision\NetteWebpack\UI\Components\Assets\Scripts\ScriptsComponent;
 use Wavevision\NetteWebpack\UI\Components\Assets\Styles\StylesComponent;
+use Wavevision\Utils\Arrays;
 
 /**
  * @DIService(generateComponent=true)
@@ -31,6 +32,25 @@ final class Control extends BaseControl
 	public function renderStyles(): void
 	{
 		$this->template->render($this->getTemplateFile('styles'));
+	}
+
+	public function addChunks(EntryChunks $chunks): self
+	{
+		Arrays::each($chunks->getScripts(), [$this, 'addScript']);
+		Arrays::each($chunks->getStyles(), [$this, 'addStyle']);
+		return $this;
+	}
+
+	public function addScript(string $script): self
+	{
+		$this->getScriptsComponent()->addChunk($script);
+		return $this;
+	}
+
+	public function addStyle(string $style): self
+	{
+		$this->getStylesComponent()->addChunk($style);
+		return $this;
 	}
 
 	public function setChunks(EntryChunks $chunks): self

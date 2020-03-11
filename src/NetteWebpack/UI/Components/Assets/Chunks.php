@@ -28,6 +28,12 @@ abstract class Chunks extends BaseControl
 			->render();
 	}
 
+	public function addChunk(string $chunk): self
+	{
+		$this->chunks[] = $chunk;
+		return $this;
+	}
+
 	/**
 	 * @param string[] $chunks
 	 */

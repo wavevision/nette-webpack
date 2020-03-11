@@ -21,6 +21,11 @@ final class ExamplesPresenter extends BasePresenter
 		);
 	}
 
+	public function actionAdd(): void
+	{
+		$this->getAssetsComponent()->addChunks($this->resolveEntryChunks->process('entry'));
+	}
+
 	public function actionError(): void
 	{
 		$this->getAssetsComponent()->render();

@@ -13,9 +13,19 @@ class AssetsTest extends PresenterTestCase
 	public function testDefault(): void
 	{
 		$this->assertStringContainsString(
-			'Hello there!',
+			'entry.js',
 			$this->extractTextResponseContent(
 				$this->runPresenter(new PresenterRequest(ExamplesPresenter::class, ExamplesPresenter::DEFAULT_ACTION))
+			)
+		);
+	}
+
+	public function testAdd(): void
+	{
+		$this->assertStringContainsString(
+			'entry.css',
+			$this->extractTextResponseContent(
+				$this->runPresenter(new PresenterRequest(ExamplesPresenter::class, 'add'))
 			)
 		);
 	}
