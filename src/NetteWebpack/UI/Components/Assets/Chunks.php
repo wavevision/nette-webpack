@@ -30,7 +30,9 @@ abstract class Chunks extends BaseControl
 
 	public function addChunk(string $chunk): self
 	{
-		$this->chunks[] = $chunk;
+		if (!in_array($chunk, $this->chunks)) {
+			$this->chunks[] = $chunk;
+		}
 		return $this;
 	}
 
