@@ -31,19 +31,19 @@
     "sort-packages": true
   },
   "require": {
+    "php": ">=7.4",
     "latte/latte": "^2.6",
     "nette/di": "^3.0",
     "nette/http": "^3.0",
-    "php": ">=7.4",
     "tracy/tracy": "^2.7",
-    "wavevision/props-control": "^4.2",
+    "wavevision/props-control": "^5.0",
     "wavevision/utils": "^2.4"
   },
   "require-dev": {
-    "jakub-onderka/php-parallel-lint": "^1.0",
     "nette/application": "^3.0",
     "phing/phing": "3.0a3",
     "php-coveralls/php-coveralls": "^2.2",
+    "php-parallel-lint/php-parallel-lint": "^1.1",
     "phpstan/extension-installer": "^1.0",
     "phpstan/phpstan": "^0.12.11",
     "phpstan/phpstan-nette": "^0.12.3",
