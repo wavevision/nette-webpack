@@ -4,25 +4,26 @@ dist: xenial
 git:
   depth: 1
 
-language: php
-php: 7.4
-
 cache:
   yarn: true
   directories:
     - node_modules
     - $HOME/.composer/cache
 
-install:
-  - nvm install
-  - yarn install
-  - composer install
-
-jobs:
+matrix:
   include:
-    - script:
-        - yarn ci
+    - language: php
+      php: 7.4
+      install:
+        - composer install
+      script:
         - composer phing ci
+    - language: node
+      install:
+        - nvm install
+        - yarn install
+      script:
+        - yarn ci
 
 notifications:
   webhooks:
