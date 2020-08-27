@@ -10,7 +10,7 @@ cache:
     - node_modules
     - $HOME/.composer/cache
 
-matrix:
+jobs:
   include:
     - language: php
       php: 7.4
@@ -18,7 +18,7 @@ matrix:
         - composer install
       script:
         - composer phing ci
-    - language: node
+    - language: node_js
       install:
         - nvm install
         - yarn install
