@@ -10,7 +10,7 @@ export default (): void => {
       compiler.run((err, stats) => {
         expect(err).toBeNull();
         expect(stats.toJson().assets).toHaveLength(6);
-        expect(stats.toString('minimal')).toContain('4 modules');
+        expect(stats.toString('minimal')).toContain('3 modules');
         done();
       });
     }));

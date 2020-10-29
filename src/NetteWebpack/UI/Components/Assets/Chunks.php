@@ -5,6 +5,7 @@ namespace Wavevision\NetteWebpack\UI\Components\Assets;
 use Wavevision\NetteWebpack\InjectFormatChunkName;
 use Wavevision\NetteWebpack\UI\BaseControl;
 use Wavevision\Utils\Arrays;
+use function in_array;
 
 abstract class Chunks extends BaseControl
 {
@@ -15,6 +16,10 @@ abstract class Chunks extends BaseControl
 	 * @var string[]
 	 */
 	private array $chunks = [];
+
+	abstract public function formatChunkName(string $chunk): string;
+
+	abstract public function getContentType(): string;
 
 	public function render(): void
 	{
@@ -44,9 +49,5 @@ abstract class Chunks extends BaseControl
 		$this->chunks = $chunks;
 		return $this;
 	}
-
-	abstract public function formatChunkName(string $chunk): string;
-
-	abstract public function getContentType(): string;
 
 }

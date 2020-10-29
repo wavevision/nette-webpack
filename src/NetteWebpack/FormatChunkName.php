@@ -16,6 +16,11 @@ class FormatChunkName
 	use SmartObject;
 	use InjectFormatAssetName;
 
+	public static function isFormatted(string $name, string $contentType): bool
+	{
+		return Strings::endsWith($name, ContentTypes::getExtension($contentType, true));
+	}
+
 	public function formatScript(string $name): string
 	{
 		return $this->process($name, ContentTypes::JS);
@@ -32,11 +37,6 @@ class FormatChunkName
 			$name = ContentTypes::getFilename($name, $contentType);
 		}
 		return $this->formatAssetName->process($name);
-	}
-
-	public static function isFormatted(string $name, string $contentType): bool
-	{
-		return Strings::endsWith($name, ContentTypes::getExtension($contentType, true));
 	}
 
 }

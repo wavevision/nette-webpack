@@ -29,7 +29,7 @@ const config: Configuration = {
       {
         test: /\.png$/,
         loader: 'file-loader',
-        options: { name: '[folder]/[name].[ext]?[hash]' },
+        options: { name: '[folder]/[name].[ext]?[hash]', esModule: false },
       },
       { test: /\.ts$/, exclude: /node_modules/, loader: 'ts-loader' },
     ],

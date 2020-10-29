@@ -17,7 +17,7 @@ jobs:
       install:
         - composer install
       script:
-        - composer phing ci
+        - make ci
     - language: node_js
       install:
         - nvm install

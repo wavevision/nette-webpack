@@ -7,6 +7,10 @@ use Wavevision\DIServiceAnnotation\DIService;
 use Wavevision\NetteWebpack\Exceptions\InvalidState;
 use Wavevision\Utils\Arrays;
 use Wavevision\Utils\ContentTypes;
+use function array_filter;
+use function array_merge;
+use function array_unique;
+use function in_array;
 
 /**
  * @DIService(generateInject=true)

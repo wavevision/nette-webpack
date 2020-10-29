@@ -4,7 +4,7 @@ import { readFileSync } from 'fs';
 // @ts-ignore
 import neon from 'neon-js';
 
-const decode = <T extends object = {}>(path: string): T =>
+const decode = <T>(path: string): T =>
   neon.decode(readFileSync(path).toString()).toObject(true) as T;
 
 const replaceParam = (param: string, needle: string, replace: string): string =>

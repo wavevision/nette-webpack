@@ -16,6 +16,7 @@ use Wavevision\NetteWebpack\LoadManifest;
 use Wavevision\NetteWebpack\NetteWebpack;
 use Wavevision\Utils\Path;
 use Wavevision\Utils\Server;
+use function interface_exists;
 
 class Extension extends CompilerExtension
 {

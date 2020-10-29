@@ -5,6 +5,9 @@ namespace Wavevision\NetteWebpack;
 use Nette\SmartObject;
 use Wavevision\NetteWebpack\Exceptions\InvalidState;
 use Wavevision\Utils\Path;
+use function array_filter;
+use function array_keys;
+use function sprintf;
 
 class NetteWebpack
 {
