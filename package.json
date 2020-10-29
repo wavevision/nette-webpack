@@ -38,7 +38,6 @@
     "@typescript-eslint/eslint-plugin": "^4.6.0",
     "@typescript-eslint/parser": "^4.6.0",
     "@wavevision/coding-standard": "^5.2.1",
-    "babel-jest": "^26",
     "clean-webpack-plugin": "^3.0.0",
     "coveralls": "^3.0.9",
     "cross-env": "^7.0.0",
@@ -83,8 +82,8 @@
     "prettier-fix": "yarn prettier --write",
     "preversion": "run-s fix make",
     "test": "jest --runInBand",
-    "test-coverage": "yarn jest --coverage || true",
-    "test-coverage-report": "yarn jest --coverage && cat temp/coverage/ts/lcov.info | coveralls",
+    "test-coverage": "yarn test --coverage",
+    "test-coverage-report": "yarn jest-coverage && cat temp/coverage/ts/lcov.info | coveralls",
     "ts": "tsc --noEmit",
     "ts-build": "tsc --project tsconfig.build.json"
   }
