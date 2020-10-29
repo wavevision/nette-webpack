@@ -32,7 +32,9 @@
   "devDependencies": {
     "@types/jest": "^26.0.15",
     "@types/mini-css-extract-plugin": "^1.2.0",
+    "@types/node": "^12.19.3",
     "@types/webpack": "^4.41.24",
+    "@types/webpack-manifest-plugin": "^2.1.0",
     "@typescript-eslint/eslint-plugin": "^4.6.0",
     "@typescript-eslint/parser": "^4.6.0",
     "@wavevision/coding-standard": "^5.2.1",
@@ -55,12 +57,12 @@
     "webpack-cli": "^4.1.0"
   },
   "dependencies": {
-    "@types/node": "^12.19.3",
-    "@types/webpack-manifest-plugin": "^2.1.0",
     "neon-js": "^1.1.2",
     "webpack-manifest-plugin": "^2.2.0"
   },
   "peerDependencies": {
+    "@types/node": "12.x",
+    "@types/webpack-manifest-plugin": "2.x",
     "webpack": "4.x"
   },
   "scripts": {
