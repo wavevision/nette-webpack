@@ -23,9 +23,6 @@ module.exports = {
   preset: 'ts-jest',
   globals: {
     'ts-jest': {
-      babelConfig: {
-        presets: ['@wavevision/coding-standard/ts/babel'],
-      },
       isolatedModules: true,
       tsconfig: {
         ...tsConfig.compilerOptions,
