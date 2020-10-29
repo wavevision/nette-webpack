@@ -12,7 +12,7 @@ import {
 } from '../constants';
 
 import { getManifestOptions } from './utils';
-import { Entries, NeonConfig, Options } from './types';
+import { NeonType, Entries, NeonConfig, Options } from './types';
 
 class WebpackHelper {
   public constructor(options: Options) {
@@ -87,13 +87,13 @@ class WebpackHelper {
     return resolve(this.options.wwwDir, this.getDist());
   };
 
-  public readonly parseNeonConfig = <T extends NeonConfig>(): T => {
+  public readonly parseNeonConfig = <T extends NeonType = NeonConfig>(): T => {
     if (!this.options.neonPath) {
       throw new Error(
         "Unable to parse neon config without 'neonPath' option defined.",
       );
     }
-    return Neon.decode<T>(this.options.neonPath);
+    return Neon.decode(this.options.neonPath);
   };
 }
 

@@ -2,9 +2,10 @@ import { Options as ManifestOptions } from 'webpack-manifest-plugin';
 
 export type Entries = Record<string, boolean>;
 export type ManifestEntries = Record<string, string[]>;
+export type NeonType = Record<string, unknown>;
 export { ManifestOptions };
 
-export interface NeonConfig {
+export interface NeonConfig extends NeonType {
   readonly webpack?: {
     readonly devServer?: {
       readonly url?: string;
