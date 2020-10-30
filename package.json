@@ -35,8 +35,6 @@
     "@types/node": "^12.19.3",
     "@types/webpack": "^4.41.24",
     "@types/webpack-manifest-plugin": "^2.1.0",
-    "@typescript-eslint/eslint-plugin": "^4.6.0",
-    "@typescript-eslint/parser": "^4.6.0",
     "@wavevision/coding-standard": "^5.2.1",
     "clean-webpack-plugin": "^3.0.0",
     "coveralls": "^3.0.9",
