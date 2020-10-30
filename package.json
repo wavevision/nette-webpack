@@ -81,7 +81,7 @@
     "preversion": "run-s fix make",
     "test": "jest --runInBand",
     "test-coverage": "yarn test --coverage",
-    "test-coverage-report": "yarn jest-coverage && cat temp/coverage/ts/lcov.info | coveralls",
+    "test-coverage-report": "yarn test-coverage && cat temp/coverage/ts/lcov.info | coveralls",
     "ts": "tsc --noEmit",
     "ts-build": "tsc --project tsconfig.build.json"
   }
