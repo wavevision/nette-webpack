@@ -6,6 +6,8 @@ use Nette\SmartObject;
 use Nette\Utils\Json;
 use Wavevision\NetteWebpack\Exceptions\InvalidState;
 use Wavevision\Utils\Path;
+use function file_get_contents;
+use function stream_context_create;
 
 /**
  * @internal

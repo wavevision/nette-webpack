@@ -6,6 +6,7 @@ use Wavevision\NetteWebpack\DevServer;
 use Wavevision\NetteWebpack\Exceptions\InvalidState;
 use Wavevision\NetteWebpack\LoadManifest;
 use Wavevision\NetteWebpack\NetteWebpack;
+use function array_keys;
 
 class NetteWebpackTest extends DIContainerTestCase
 {

@@ -2,11 +2,11 @@ import { ManifestEntries, ManifestOptions } from './types';
 
 export const formatManifestChunks = (
   entries: ManifestEntries,
-  manifest: object,
+  manifest: Record<string, unknown>,
 ): ManifestEntries => {
   const chunks: ManifestEntries = {};
   for (const asset in manifest) {
-    const name = manifest[asset as keyof object] as string;
+    const name = manifest[asset as keyof Record<string, unknown>] as string;
     for (const entry in entries) {
       if (!chunks[entry]) chunks[entry] = [];
       for (const entryAsset of entries[entry]) {
@@ -32,7 +32,7 @@ export const generateManifest: ManifestOptions['generate'] = (
     seed,
   );
   return Object.assign(manifest, {
-    chunks: formatManifestChunks(entries, manifest),
+    chunks: formatManifestChunks(entries, manifest as Record<string, unknown>),
   });
 };
 

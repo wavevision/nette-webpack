@@ -5,6 +5,8 @@ namespace Wavevision\NetteWebpack\Debugger;
 use Latte\Engine;
 use Tracy\IBarPanel;
 use Wavevision\NetteWebpack\NetteWebpack;
+use function array_keys;
+use function count;
 
 class WebpackPanel implements IBarPanel
 {

@@ -5,6 +5,7 @@ namespace Wavevision\NetteWebpack\DI;
 use Nette\SmartObject;
 use Wavevision\NetteWebpack\DevServer;
 use Wavevision\NetteWebpack\NetteWebpack;
+use function array_merge;
 
 /**
  * @internal

@@ -1,1 +1,1 @@
-{"version":3,"sources":["webpack:///./examples/assets/styles.css"],"names":[],"mappings":"AAAA;AACA;AACA","file":"entry.css?56b9d150fbd9a0cad067","sourcesContent":["body {\n  color: blue;\n}\n"],"sourceRoot":""}
+{"version":3,"sources":["webpack:///examples/assets/styles.css"],"names":[],"mappings":"AAAA;EACE,WAAW;AACb","file":"entry.css?e610813bffb0c9aaa85c","sourcesContent":["body {\n  color: blue;\n}\n"],"sourceRoot":""}

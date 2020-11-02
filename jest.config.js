@@ -1,3 +1,6 @@
+/* eslint @typescript-eslint/no-var-requires: 'off' */
+const tsConfig = require('./tsconfig.json');
+
 module.exports = {
   cacheDirectory: '<rootDir>/temp/cache/jest',
   testEnvironment: 'node',
@@ -18,4 +21,15 @@ module.exports = {
     '!src/assets/index.ts',
   ],
   preset: 'ts-jest',
+  globals: {
+    'ts-jest': {
+      isolatedModules: true,
+      tsconfig: {
+        ...tsConfig.compilerOptions,
+        lib: ['ES2019'],
+        module: 'commonjs',
+        target: 'ES2019',
+      },
+    },
+  },
 };
