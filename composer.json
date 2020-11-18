@@ -36,7 +36,7 @@
     "nette/di": "^3.0",
     "nette/http": "^3.0",
     "tracy/tracy": "^2.7",
-    "wavevision/props-control": "^5.0",
+    "wavevision/props-control": "^6.0",
     "wavevision/utils": "^2.4"
   },
   "require-dev": {
