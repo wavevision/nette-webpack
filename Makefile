@@ -39,7 +39,7 @@ phpcbf:
 	$(bin)/phpcbf -spn --standard=$(codeSnifferRuleset) --extensions=php $(dirs) ; true
 
 phpstan:
-	$(bin)/phpstan analyze $(dirs) --level max
+	$(bin)/phpstan analyze $(dirs)
 
 # Tests
 
@@ -53,7 +53,7 @@ test-coverage-clover: reset
 	$(bin)/phpunit --coverage-clover=$(coverageClover)
 
 test-coverage-report: test-coverage-clover
-	$(bin)/php-coveralls --coverage_clover=$(coverageClover) --verbose
+	$(bin)/php-coveralls --coverage_clover=$(coverageClover)
 
 test-coverage-open: test-coverage
 ifndef chrome

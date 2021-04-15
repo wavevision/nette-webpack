@@ -6,7 +6,6 @@ import { helper } from '../../../examples/webpack.config';
 const ENTRY_ASSETS = ['entry.css', 'entry.js'];
 const MANIFEST_PATH = resolve(helper.getOutputPath(), 'manifest.json');
 
-// eslint-disable-next-line jest/no-export
 export default (): void => {
   it('created dist with entry and manifest', () => {
     for (const asset of ENTRY_ASSETS) {

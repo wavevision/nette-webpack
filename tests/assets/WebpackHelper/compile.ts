@@ -2,10 +2,9 @@ import webpack from 'webpack';
 
 import config from '../../../examples/webpack.config';
 
-// eslint-disable-next-line jest/no-export
 export default (): void => {
   it('compiles webpack assets', () =>
-    new Promise(done => {
+    new Promise<void>(done => {
       const compiler = webpack(config);
       compiler.run((err, stats) => {
         expect(err).toBeNull();

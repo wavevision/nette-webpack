@@ -31,10 +31,10 @@
   "homepage": "https://github.com/wavevision/nette-webpack",
   "devDependencies": {
     "@types/jest": "^26.0.15",
-    "@types/mini-css-extract-plugin": "^1.2.0",
+    "@types/mini-css-extract-plugin": "1.4.0",
     "@types/node": "^12.19.3",
     "@types/webpack": "^4.41.24",
-    "@wavevision/coding-standard": "^5.2.1",
+    "@wavevision/coding-standard": "^6.0.2",
     "clean-webpack-plugin": "^3.0.0",
     "coveralls": "^3.0.9",
     "cross-env": "^7.0.0",
@@ -58,8 +58,11 @@
     "webpack-manifest-plugin": "^2.2.0"
   },
   "peerDependencies": {
-    "@types/node": "12.x",
-    "webpack": "4.x"
+    "@types/node": "^12",
+    "webpack": "^4"
+  },
+  "resolutions": {
+    "@types/webpack": "^4.41"
   },
   "scripts": {
     "build": "NODE_ENV=production run-s clean ts-build",
@@ -75,12 +78,12 @@
     "postversion-push": "git push",
     "postversion-push-tags": "yarn postversion-push --tags",
     "prepare": "npm run build",
-    "prettier": "prettier '**/*.ts' --check",
+    "prettier": "prettier '**/*.{md,js,ts}' --check",
     "prettier-fix": "yarn prettier --write",
     "preversion": "run-s fix make",
     "test": "jest --runInBand",
     "test-coverage": "yarn test --coverage",
-    "test-coverage-report": "yarn test-coverage && cat temp/coverage/ts/lcov.info | coveralls",
+    "test-coverage-report": "yarn test-coverage && coveralls < temp/coverage/ts/lcov.info",
     "ts": "tsc --noEmit",
     "ts-build": "tsc --project tsconfig.build.json"
   }

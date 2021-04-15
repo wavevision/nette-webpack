@@ -3,11 +3,11 @@
 namespace Wavevision\NetteWebpackExamples\Presenters;
 
 use Nette\Application\UI\Presenter;
-use Nette\Bridges\ApplicationLatte\Template;
+use Nette\Bridges\ApplicationLatte\DefaultTemplate;
 use Wavevision\NetteWebpack\UI\Components\Assets\AssetsComponent;
 
 /**
- * @property-read Template $template
+ * @property-read DefaultTemplate $template
  */
 abstract class BasePresenter extends Presenter
 {
