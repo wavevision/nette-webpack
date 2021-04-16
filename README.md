@@ -1,7 +1,7 @@
 <p align="center"><a href="https://github.com/wavevision"><img alt="Wavevision s.r.o." src="https://wavevision.com/images/wavevision-logo.png" width="120" /></a></p>
 <h1 align="center">Nette Webpack</h1>
 
-[![Build Status](https://travis-ci.org/wavevision/nette-webpack.svg?branch=master)](https://travis-ci.org/wavevision/nette-webpack)
+[![CI](https://github.com/wavevision/nette-webpack/workflows/CI/badge.svg)](https://github.com/wavevision/nette-webpack/actions/workflows/ci.yml)
 [![PHPStan](https://img.shields.io/badge/style-level%20max-brightgreen.svg?label=phpstan)](https://github.com/phpstan/phpstan)
 [![Coverage Status](https://coveralls.io/repos/github/wavevision/nette-webpack/badge.svg?branch=master)](https://coveralls.io/github/wavevision/nette-webpack?branch=master)
 [![Release](https://img.shields.io/github/v/tag/wavevision/nette-webpack?label=version&sort=semver)](https://github.com/wavevision/nette-webpack/releases)
@@ -96,16 +96,16 @@ Finally, render `assets` in your layout.
 ```latte
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width">
-	<title>Wavevision Nette Webpack</title>
-	{control assets:styles}
-</head>
-<body>
-{include content}
-{control assets:scripts}
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<title>Wavevision Nette Webpack</title>
+		{control assets:styles}
+	</head>
+	<body>
+		{include content}
+		{control assets:scripts}
+	</body>
 </html>
 ```
 
@@ -113,12 +113,14 @@ Should you need it, you can inject and use following services to further customi
 
 - [`NetteWebpack`](./src/NetteWebpack/NetteWebpack.php) – provides basic methods to work with the extension
 - [`FormatAssetName`](./src/NetteWebpack/FormatAssetName.php) – formats and resolves asset URL based on provided name
-- [`FormatChunkName`](./src/NetteWebpack/FormatChunkName.php) – formats chunk names for specific content types and resolves their URL
+- [`FormatChunkName`](./src/NetteWebpack/FormatChunkName.php) – formats chunk names for specific content types and
+  resolves their URL
 
 ### Webpack helper
 
-This simple utility will help you to manage your project setup and webpack configs consistently. It will also provide you
-with pre-configured [webpack-manifest-plugin](https://github.com/danethurber/webpack-manifest-plugin) to generate `manifest.json`
+This simple utility will help you to manage your project setup and webpack configs consistently. It will also provide
+you with pre-configured [webpack-manifest-plugin](https://github.com/danethurber/webpack-manifest-plugin) to
+generate `manifest.json`
 with extra `chunks` property that is used to dynamically resolve entry chunks in your application.
 
 ```typescript
@@ -127,9 +129,11 @@ import { WebpackHelper } from '@wavevision/nette-webpack';
 
 The helper constructor accepts following arguments:
 
-- **`neonPath?: string`** – path to a `neon` in which `webpack` is configured (if not provided, default values will be used)
+- **`neonPath?: string`** – path to a `neon` in which `webpack` is configured (if not provided, default values will be
+  used)
 - **`wwwDir: string`** – mandatory path to application `wwwDir`
-- **`manifestOptions?: WebpackManifestPlugin.Options`** – if you need to customize manifest plugin setup, you can do it here
+- **`manifestOptions?: WebpackManifestPlugin.Options`** – if you need to customize manifest plugin setup, you can do it
+  here
 
 The returned class exposes following methods:
 
@@ -141,7 +145,8 @@ The returned class exposes following methods:
 - **`getEnabledEntries(): string[]`** – returns list of webpack entries that have `true` configured
 - **`getManifest(): string`** – returns webpack manifest file name
 - **`getOutputPath(): string`** – returns resolved path to webpack output directory
-- **`parseNeonConfig<T extends NeonConfig>(): T`** – returns parsed `neon` config (throws error if `neonPath` is not defined)
+- **`parseNeonConfig<T extends NeonConfig>(): T`** – returns parsed `neon` config (throws error if `neonPath` is not
+  defined)
 
 > **Note:** You can also import `Neon` helper if you want to parse and work with more `neon` files.
 
@@ -149,4 +154,6 @@ See [example webpack config](./examples/webpack.config.ts) to see it all in acti
 
 ## Credits
 
-Many️ 🙏 to [Jiří Pudil](https://github.com/jiripudil) for his [WebpackNetteAdapter](https://github.com/o2ps/WebpackNetteAdapter) which we used in our projects and served as an inspiration for this library.
+Many️ 🙏 to [Jiří Pudil](https://github.com/jiripudil) for
+his [WebpackNetteAdapter](https://github.com/o2ps/WebpackNetteAdapter) which we used in our projects and served as an
+inspiration for this library.

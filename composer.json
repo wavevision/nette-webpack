@@ -25,9 +25,6 @@
     }
   },
   "config": {
-    "platform": {
-      "php": "7.4"
-    },
     "sort-packages": true
   },
   "require": {
@@ -43,9 +40,8 @@
     "nette/application": "^3.0",
     "php-coveralls/php-coveralls": "^2.2",
     "phpstan/extension-installer": "^1.0",
-    "phpstan/phpstan": "^0.12.11",
     "phpstan/phpstan-nette": "^0.12.3",
-    "wavevision/coding-standard": "^5.2",
+    "wavevision/coding-standard": "^6.0",
     "wavevision/di-service-annotation": "^4.0",
     "wavevision/nette-tests": "^3.1"
   },

@@ -2,8 +2,11 @@
 
 namespace Wavevision\NetteWebpack\UI;
 
+use Nette\Bridges\ApplicationLatte\DefaultTemplate;
+
 /**
  * @internal
+ * @property-read DefaultTemplate $template
  */
 abstract class BaseControl extends \Wavevision\PropsControl\BaseControl
 {
