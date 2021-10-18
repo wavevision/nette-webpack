@@ -8,8 +8,10 @@ export default (): void => {
       const compiler = webpack(config);
       compiler.run((err, stats) => {
         expect(err).toBeNull();
-        expect(stats.toJson().assets).toHaveLength(6);
-        expect(stats.toString('minimal')).toContain('3 modules');
+        if (stats) {
+          expect(stats.toJson().assets).toHaveLength(4);
+          expect(stats.toString('minimal')).toContain('4 assets');
+        }
         done();
       });
     }));

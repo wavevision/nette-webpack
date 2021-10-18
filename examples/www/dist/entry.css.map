@@ -1,1 +1,1 @@
-{"version":3,"sources":["webpack:///./examples/assets/styles.css"],"names":[],"mappings":"AAAA;EACE,WAAW;AACb","file":"entry.css?7d8759b37c6c41e46195","sourcesContent":["body {\n  color: blue;\n}\n"],"sourceRoot":""}
+{"version":3,"file":"entry.css?be10c8291b88c88011d1","mappings":"AAAA;EACE,WAAW;AACb","sources":["webpack://@wavevision/nette-webpack/./examples/assets/styles.css"],"sourcesContent":["body {\n  color: blue;\n}\n"],"names":[],"sourceRoot":""}

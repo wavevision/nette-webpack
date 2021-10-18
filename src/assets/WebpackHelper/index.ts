@@ -1,7 +1,7 @@
 import { parse, UrlWithParsedQuery } from 'url';
 import { resolve } from 'path';
 
-import WebpackManifestPlugin from 'webpack-manifest-plugin';
+import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
 
 import Neon from '../Neon';
 import {

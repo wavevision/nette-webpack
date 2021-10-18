@@ -28,19 +28,19 @@ const config: Configuration = {
       { test: /\.css$/, use: [MiniCssExtractPlugin.loader, 'css-loader'] },
       {
         test: /\.png$/,
-        loader: 'file-loader',
-        options: { name: '[folder]/[name].[ext]?[hash]', esModule: false },
+        type: 'asset/resource',
+        generator: { filename: 'images/[name][ext]?[fullhash]' },
       },
       { test: /\.ts$/, exclude: /node_modules/, loader: 'ts-loader' },
     ],
   },
   output: {
-    filename: '[name].js?[hash]',
+    filename: '[name].js?[fullhash]',
     path: helper.getOutputPath(),
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({ filename: '[name].css?[hash]' }),
+    new MiniCssExtractPlugin({ filename: '[name].css?[fullhash]' }),
     helper.createManifestPlugin(),
   ],
   resolve: {

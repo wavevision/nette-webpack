@@ -1,4 +1,4 @@
-import { Options as ManifestOptions } from 'webpack-manifest-plugin';
+import { ManifestPluginOptions as ManifestOptions } from 'webpack-manifest-plugin';
 
 export type Entries = Record<string, boolean>;
 export type ManifestEntries = Record<string, string[]>;

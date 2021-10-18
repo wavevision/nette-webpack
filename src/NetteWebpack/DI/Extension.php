@@ -70,7 +70,7 @@ class Extension extends CompilerExtension
 		$config = $this->getConfig();
 		$devServer = new DevServer($config[NetteWebpack::DEV_SERVER]);
 		$serviceSetup = new ServiceSetup($devServer, $config);
-		$netteWebpack = $builder->addDefinition($this->prefix('netteWebpack'));
+		$netteWebpack = $builder->addDefinition($this->prefix('netteWebpack'), new ServiceDefinition());
 		$netteWebpackSetup = $serviceSetup->get($config[NetteWebpack::ENTRIES], $this->isProduction());
 		$loadManifestSetup = $serviceSetup->get($config[NetteWebpack::MANIFEST], $this->consoleMode);
 		if ($this->isProduction()) {
@@ -81,8 +81,8 @@ class Extension extends CompilerExtension
 				->addSetup('injectLoadManifest', [$loadManifest]);
 			$this->compiler->addDependencies([$loadManifest->getManifestPath()]);
 		} else {
-			$loadManifest = $builder
-				->addDefinition($this->prefix('loadManifest'))
+			$loadManifest = $builder->addDefinition($this->prefix('loadManifest'), new ServiceDefinition());
+			$loadManifest
 				->setFactory(LoadManifest::class, $loadManifestSetup)
 				->setAutowired(false);
 			$netteWebpack
